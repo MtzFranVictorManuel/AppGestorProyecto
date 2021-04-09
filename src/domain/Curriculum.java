@@ -24,9 +24,7 @@ public class Curriculum {
     public Curriculum() {
     }
 
-    public Curriculum(String institucionDependecia, String facultad, 
-            String grado, String clave, int numeroIntegrantes, int numeroColaboladores, 
-            String fechaRegistro, String objetiviGeneral, String mision, String vision) {
+    public Curriculum(String institucionDependecia, String facultad, String grado, String clave, int numeroIntegrantes, int numeroColaboladores, String fechaRegistro, String objetiviGeneral, String mision, String vision) {
         this.institucionDependecia = institucionDependecia;
         this.facultad = facultad;
         this.grado = grado;
@@ -99,7 +97,7 @@ public class Curriculum {
         this.numeroIntegrantes = numeroIntegrantes;
     }
 
-    public void setNumeroColaboladores(int numeroColaboladores) {
+    public void setNumeroColaboladores(int numeroColaboladores) {//hola actualiza
         this.numeroColaboladores = numeroColaboladores;
     }
 
@@ -118,6 +116,8 @@ public class Curriculum {
     public void setVision(String vision) {
         this.vision = vision;
     }
+
+
     
     
 }
