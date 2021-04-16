@@ -17,9 +17,9 @@ import java.sql.SQLException;
  */
 public class Conexion {
     private static final String JDBC_USER="root";
-    private static final String JDBC_DATABASE="practicasprofecionales";
-    private static final String JDBC_PASSWORD="123456";
-    private static final String JDBC_URL = "jdbc:mysql://localhost/practicasprofecionales?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String JDBC_DATABASE="pruebasgp";
+    private static final String JDBC_PASSWORD="Q6spEd1=pHA";
+    private static final String JDBC_URL = "jdbc:mysql://localhost/pruebasgp?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public static Connection getConexion(){
         Connection connect = null;
@@ -27,7 +27,10 @@ public class Conexion {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connect = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         }
-        catch(Exception excep){
+        catch(ClassNotFoundException excep){
+            System.out.println("Error de conexion " + excep.getMessage());
+        }
+        catch(SQLException excep){
             System.out.println("Error de conexion " + excep.getMessage());
         }
         return connect;

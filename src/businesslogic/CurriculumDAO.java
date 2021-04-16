@@ -9,6 +9,6 @@ package businesslogic;
  *
  * @author azul_
  */
-public class CurriculumConsultations {
+public class CurriculumDAO {
     
 }
