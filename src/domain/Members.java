@@ -9,7 +9,7 @@ package domain;
  *
  * @author azul_
  */
-public class Integrante {
+public class Members {
     public String nombre;
     public String apellido;
     public String cargo;
@@ -18,10 +18,10 @@ public class Integrante {
     public String email;
     public String contrasena;
 
-    public Integrante() {
+    public Members() {
     }
 
-    public Integrante(String nombre, String apellido, String cargo, String fechaNacimiento, String curp, String email, String contrasena) {
+    public Members(String nombre, String apellido, String cargo, String fechaNacimiento, String curp, String email, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;
@@ -31,7 +31,7 @@ public class Integrante {
         this.contrasena = contrasena;
     }
 
-    public Integrante(String nombre, String apellido, String email, String contrasena) {
+    public Members(String nombre, String apellido, String email, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

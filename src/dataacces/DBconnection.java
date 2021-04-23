@@ -15,7 +15,7 @@ import java.sql.SQLException;
  *
  * @author azul_
  */
-public class Conexion {
+public class DBconnection {
     private static final String JDBC_USER="root";
     private static final String JDBC_DATABASE="pruebasgp";
     private static final String JDBC_PASSWORD="Q6spEd1=pHA";

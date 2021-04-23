@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/CurriculumConsultations.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/IWorkplan.java</file>
             <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/ApplicationInitializer.java</file>
-            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/dataacces/Conexion.java</file>
-            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Curriculum.java</file>
-            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/gui/FXMLCurriculum.fxml</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/WorkplanDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/dataacces/DBconnection.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/test/dataacces/ConexionIT.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Members.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Workplan.java</file>
         </group>
     </open-files>
 </project-private>

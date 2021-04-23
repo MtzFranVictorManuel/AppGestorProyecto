@@ -9,16 +9,16 @@ package domain;
  *
  * @author azul_
  */
-public class Curriculum {
+public class Resume {
     private String nombre;
     private String mision;
     private String vision;
     private String objetivoGeneral;
 
-    public Curriculum() {
+    public Resume() {
     }
 
-    public Curriculum(String nombre, String mision, String vision, String objetivoGeneral) {
+    public Resume(String nombre, String mision, String vision, String objetivoGeneral) {
         this.nombre = nombre;
         this.mision = mision;
         this.vision = vision;
