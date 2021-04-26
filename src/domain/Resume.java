@@ -10,51 +10,53 @@ package domain;
  * @author azul_
  */
 public class Resume {
-    private String nombre;
-    private String mision;
+    private String nameResume;
+    private String mission;
     private String vision;
-    private String objetivoGeneral;
+    private String generalObjetive;
 
     public Resume() {
     }
 
-    public Resume(String nombre, String mision, String vision, String objetivoGeneral) {
-        this.nombre = nombre;
-        this.mision = mision;
+    public Resume(String nameResume, String mission, String vision, String generalObjetive) {
+        this.nameResume = nameResume;
+        this.mission = mission;
         this.vision = vision;
-        this.objetivoGeneral = objetivoGeneral;
+        this.generalObjetive = generalObjetive;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNameResume() {
+        return nameResume;
     }
 
-    public String getMision() {
-        return mision;
+    public String getMission() {
+        return mission;
     }
 
     public String getVision() {
         return vision;
     }
 
-    public String getObjetivoGeneral() {
-        return objetivoGeneral;
+    public String getGeneralObjetive() {
+        return generalObjetive;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNameResume(String nameResume) {
+        this.nameResume = nameResume;
     }
 
-    public void setMision(String mision) {
-        this.mision = mision;
+    public void setMission(String mission) {
+        this.mission = mission;
     }
 
     public void setVision(String vision) {
         this.vision = vision;
     }
 
-    public void setObjetivoGeneral(String objetivoGeneral) {
-        this.objetivoGeneral = objetivoGeneral;
+    public void setGeneralObjetive(String generalObjetive) {
+        this.generalObjetive = generalObjetive;
     }
+
+    
     
 }

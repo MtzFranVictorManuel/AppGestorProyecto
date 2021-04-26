@@ -10,48 +10,41 @@ package domain;
  * @author azul_
  */
 public class Members {
-    public String nombre;
-    public String apellido;
-    public String cargo;
-    public String fechaNacimiento;
+    public String name;
+    public String lastName;
+    public String position;
+    public String birthday;
     public String curp;
     public String email;
-    public String contrasena;
+    public String password;
 
     public Members() {
     }
 
-    public Members(String nombre, String apellido, String cargo, String fechaNacimiento, String curp, String email, String contrasena) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.cargo = cargo;
-        this.fechaNacimiento = fechaNacimiento;
+    public Members(String name, String lastName, String position, String birthday, String curp, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.position = position;
+        this.birthday = birthday;
         this.curp = curp;
         this.email = email;
-        this.contrasena = contrasena;
+        this.password = password;
     }
 
-    public Members(String nombre, String apellido, String email, String contrasena) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.contrasena = contrasena;
+    public String getName() {
+        return name;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getPosition() {
+        return position;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getBirthday() {
+        return birthday;
     }
 
     public String getCurp() {
@@ -62,24 +55,24 @@ public class Members {
         return email;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public void setCurp(String curp) {
@@ -90,9 +83,11 @@ public class Members {
         this.email = email;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    
     
     
 }
