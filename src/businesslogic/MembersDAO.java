@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MembersDAO {
-    private Connection connectionTrasmission;
+    private Connection connectionTransmission;
     Connection connect = DBconnection.getConexion();
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_integrante (nombre, apellidos, cargos, fechaNacimiento, curp, email, contrasenia) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -23,8 +23,8 @@ public class MembersDAO {
 
     }
 
-    public MembersDAO(Connection connectionTrasmission){
-        this.connectionTrasmission = connectionTrasmission;
+    public MembersDAO(Connection connectionTransmission){
+        this.connectionTransmission = connectionTransmission;
     }
 
     public int insert(Members member){
@@ -45,7 +45,7 @@ public class MembersDAO {
             }
             finally{
                 DBconnection.close(preStatement);
-                if(this.connectionTrasmission == null){
+                if(this.connectionTransmission == null){
                     DBconnection.close(connect);
                 }
             }
@@ -54,7 +54,7 @@ public class MembersDAO {
     }
     
     public int update(Members member){
-        int rows = 1;
+        int rows = 0;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_UPDATE);
@@ -72,7 +72,7 @@ public class MembersDAO {
             }
             finally{
                 DBconnection.close(preStatement);
-                if(this.connectionTrasmission == null){
+                if(this.connectionTransmission == null){
                     DBconnection.close(connect);
                 }
             }
@@ -112,7 +112,7 @@ public class MembersDAO {
             }
             finally{
                 DBconnection.close(preStatement);
-                if(this.connectionTrasmission == null){
+                if(this.connectionTransmission == null){
                     DBconnection.close(connect);
                 }
             }
@@ -131,7 +131,7 @@ public class MembersDAO {
         }
         finally{
         DBconnection.close(preStatement);
-            if(this.connectionTrasmission == null){
+            if(this.connectionTransmission == null){
                 DBconnection.close(connect);
             } 
         }
