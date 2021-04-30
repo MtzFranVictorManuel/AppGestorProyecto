@@ -5,11 +5,14 @@
  */
 package domain;
 
+import java.sql.Date;
+
 /**
  *
  * @author azul_
  */
 public class Members {
+    public int idMember;
     public String name;
     public String lastName;
     public String position;
@@ -21,6 +24,10 @@ public class Members {
     public Members() {
     }
 
+    public Members(int idMember) {
+        this.idMember = idMember;
+    }
+
     public Members(String name, String lastName, String position, String birthday, String curp, String email, String password) {
         this.name = name;
         this.lastName = lastName;
@@ -29,6 +36,12 @@ public class Members {
         this.curp = curp;
         this.email = email;
         this.password = password;
+    }
+
+    
+    
+    public int getIdMember() {
+        return idMember;
     }
 
     public String getName() {
@@ -59,6 +72,10 @@ public class Members {
         return password;
     }
 
+    public void setIdMember(int idMember) {
+        this.idMember = idMember;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -87,7 +104,7 @@ public class Members {
         this.password = password;
     }
 
-    
-    
-    
+    public void setBirthday(Date birthday) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }   
 }

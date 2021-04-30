@@ -14,15 +14,18 @@ public class Resume {
     private String mission;
     private String vision;
     private String generalObjetive;
+    private int fkMember;
+    
 
     public Resume() {
     }
 
-    public Resume(String nameResume, String mission, String vision, String generalObjetive) {
+    public Resume(String nameResume, String mission, String vision, String generalObjetive, int fkMember) {
         this.nameResume = nameResume;
         this.mission = mission;
         this.vision = vision;
         this.generalObjetive = generalObjetive;
+        this.fkMember = fkMember;
     }
 
     public String getNameResume() {
@@ -41,6 +44,10 @@ public class Resume {
         return generalObjetive;
     }
 
+    public int getFkMember() {
+        return fkMember;
+    }
+
     public void setNameResume(String nameResume) {
         this.nameResume = nameResume;
     }
@@ -57,6 +64,7 @@ public class Resume {
         this.generalObjetive = generalObjetive;
     }
 
-    
-    
+    public void setFkMember(int fkMember) {
+        this.fkMember = fkMember;
+    }
 }

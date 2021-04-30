@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.sql.Date;
+
 /**
  *
  * @author azul_
@@ -13,20 +15,20 @@ public class AcademicBody {
     private String keyCode;
     private String institucionalFaculty;
     private int numberCollaborators;
-    private String registrationDate;
+    private Date registrationDate;
     private String degreeConsolidation;
     private String dependecyInstitution;
-    private int numberParticiplants;
+    private int numberParticipants;
     private int fkMember;
 
-    public AcademicBody(String keyCode, String institucionalFaculty, int numberCollaborators, String registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticiplants, int fkMember) {
+    public AcademicBody(String keyCode, String institucionalFaculty, int numberCollaborators, Date registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticipants, int fkMember) {
         this.keyCode = keyCode;
         this.institucionalFaculty = institucionalFaculty;
         this.numberCollaborators = numberCollaborators;
         this.registrationDate = registrationDate;
         this.degreeConsolidation = degreeConsolidation;
         this.dependecyInstitution = dependecyInstitution;
-        this.numberParticiplants = numberParticiplants;
+        this.numberParticipants = numberParticipants;
         this.fkMember = fkMember;
     }
 
@@ -49,7 +51,7 @@ public class AcademicBody {
         return numberCollaborators;
     }
 
-    public String getRegistrationDate() {
+    public Date getRegistrationDate() {
         return registrationDate;
     }
 
@@ -61,8 +63,8 @@ public class AcademicBody {
         return dependecyInstitution;
     }
 
-    public int getNumberParticiplants() {
-        return numberParticiplants;
+    public int getNumberParticipants() {
+        return numberParticipants;
     }
 
     public void setFkMember(int fkMember) {
@@ -81,7 +83,7 @@ public class AcademicBody {
         this.numberCollaborators = numberCollaborators;
     }
 
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -93,8 +95,8 @@ public class AcademicBody {
         this.dependecyInstitution = dependecyInstitution;
     }
 
-    public void setNumberParticiplants(int numberParticiplants) {
-        this.numberParticiplants = numberParticiplants;
+    public void setNumberParticipants(int numberParticipants) {
+        this.numberParticipants = numberParticipants;
     }
     
     

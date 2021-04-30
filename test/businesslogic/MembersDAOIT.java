@@ -8,6 +8,7 @@ package businesslogic;
 import domain.Members;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,8 +43,7 @@ public class MembersDAOIT {
     public void testMethodInsert() {
         MembersDAO miembro = new MembersDAO();
         Members member = new Members("Miguel", "Gonzales Hernandes", "Maestro", "1990-04-04", "as3df16s5d4f", "miguel@estudio.com", "123456789");
-        miembro.insert(member);
-        fail("The test case is a prototype.");
+        Assert.assertNotNull(miembro.insert(member));
     }
     
 }
