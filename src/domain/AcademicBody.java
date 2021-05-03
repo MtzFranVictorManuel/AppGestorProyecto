@@ -32,6 +32,18 @@ public class AcademicBody {
         this.fkMember = fkMember;
     }
 
+    public AcademicBody(String keyCode, String institucionalFaculty, int numberCollaborators, Date registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticipants) {
+        this.keyCode = keyCode;
+        this.institucionalFaculty = institucionalFaculty;
+        this.numberCollaborators = numberCollaborators;
+        this.registrationDate = registrationDate;
+        this.degreeConsolidation = degreeConsolidation;
+        this.dependecyInstitution = dependecyInstitution;
+        this.numberParticipants = numberParticipants;
+    }
+    
+    
+
     public AcademicBody() {
     }
 

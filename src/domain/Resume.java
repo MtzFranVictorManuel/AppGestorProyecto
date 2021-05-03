@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain;
 
-/**
- *
- * @author azul_
- */
+
 public class Resume {
     private String nameResume;
     private String mission;
@@ -18,6 +10,13 @@ public class Resume {
     
 
     public Resume() {
+    }
+
+    public Resume(String nameResume, String mission, String vision, String generalObjetive) {
+        this.nameResume = nameResume;
+        this.mission = mission;
+        this.vision = vision;
+        this.generalObjetive = generalObjetive;
     }
 
     public Resume(String nameResume, String mission, String vision, String generalObjetive, int fkMember) {

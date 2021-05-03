@@ -1,14 +1,116 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
-/**
- *
- * @author azul_
- */
-public class ResumeDAO {
+import dataacces.DBconnection;
+import domain.Members;
+import domain.Resume;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class ResumeDAO implements IResume{
+    private Connection connectionTransmission;
+    Connection connect = DBconnection.getConexion();
+    PreparedStatement preStatement = null;
+    private static final String SQL_INSERT  = "INSERT INTO tbl_curriculum (nombre, mision, vision, objetivoGeneral, fkIntegrante) VALUES (?, ?, ?, ?, ?);";
+    private static final String SQL_SELECT = "SELECT * FROM tbl_curriculum WHERE fkIntegrante = ?;";
+    private static final String SQL_UPDATE = "UPDATE tbl_curriculum SET nombre = ?, mision = ?, vision = ?, objetivoGeneral = ? WHERE fkIntegrante = ?;";
+    
+    public ResumeDAO() {
+    }
+
+    public ResumeDAO(Connection connectionTransmission) {
+        this.connectionTransmission = connectionTransmission;
+    }
+    
+    @Override
+    public int insert(Resume resumeMember){
+        int rows = 0;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_INSERT);
+                preStatement.setString(1, resumeMember.getNameResume());
+                preStatement.setString(2, resumeMember.getMission());
+                preStatement.setString(3, resumeMember.getVision());
+                preStatement.setString(4, resumeMember.getGeneralObjetive());
+                preStatement.setInt(5, resumeMember.getFkMember());
+                rows = preStatement.executeUpdate();
+            }
+            catch(SQLException exception){
+                Logger.getLogger(ResumeDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return rows;
+    }
+    
+    @Override
+    public Resume select(int idMember){
+        Resume resume = null;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_SELECT);
+                preStatement.setInt(1, idMember);
+                ResultSet rSet = preStatement.executeQuery();
+                if(rSet.next()){
+                    String name = rSet.getString("nombre");
+                    String mission = rSet.getString("mision");
+                    String vision = rSet.getString("vision");
+                    String generalObjetive = rSet.getString("objetivoGeneral");
+                    
+                    resume = new Resume();
+                    resume.setNameResume(name);
+                    resume.setMission(mission);
+                    resume.setVision(vision);
+                    resume.setGeneralObjetive(generalObjetive);
+                    DBconnection.close(rSet);
+                    return resume;
+                }
+            }
+            catch(SQLException exception){
+                Logger.getLogger(ResumeDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return resume;
+    }
+    
+    @Override
+    public int update(Resume resumeMember, int idMember){
+        int rows = 0;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_UPDATE);
+                preStatement.setString(1, resumeMember.getNameResume());
+                preStatement.setString(2, resumeMember.getMission());
+                preStatement.setString(3, resumeMember.getVision());
+                preStatement.setString(4, resumeMember.getGeneralObjetive());
+                preStatement.setInt(5, idMember);
+                rows = preStatement.executeUpdate();
+            }
+            catch(SQLException exception){
+                Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return rows;
+    }
     
 }

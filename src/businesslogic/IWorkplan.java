@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
+
+import domain.Workplan;
 
 /**
  *
@@ -11,4 +8,11 @@ package businesslogic;
  */
 public interface IWorkplan {
     
+    public int insert(Workplan workplan, int idAcademic);
+    
+    public Workplan select(int idAcademicBody);
+    
+    public int update(Workplan workPlan, String titel, int idAcademicBody);
+    
+    public int delete(String titel, int idAcademicBody);
 }

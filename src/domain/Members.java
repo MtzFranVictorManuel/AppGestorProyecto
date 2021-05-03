@@ -16,7 +16,7 @@ public class Members {
     public String name;
     public String lastName;
     public String position;
-    public String birthday;
+    public Date birthday;
     public String curp;
     public String email;
     public String password;
@@ -28,7 +28,7 @@ public class Members {
         this.idMember = idMember;
     }
 
-    public Members(String name, String lastName, String position, String birthday, String curp, String email, String password) {
+    public Members(String name, String lastName, String position, Date birthday, String curp, String email, String password) {
         this.name = name;
         this.lastName = lastName;
         this.position = position;
@@ -56,7 +56,7 @@ public class Members {
         return position;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
@@ -88,7 +88,7 @@ public class Members {
         this.position = position;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -103,8 +103,5 @@ public class Members {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setBirthday(Date birthday) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
+  
 }

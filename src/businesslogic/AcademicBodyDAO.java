@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 
 
-public class AcademicBodyDAO {
+public class AcademicBodyDAO implements IAcademicBody{
     private Connection connectionTransmission;
     Connection connect = DBconnection.getConexion();
     PreparedStatement preStatement = null;
@@ -20,7 +20,7 @@ public class AcademicBodyDAO {
             + "numeroColaboradores, fechaRegistro, gradoColsolidacion, institucionIndependencial, numeroIntegrantes, fkIntegrante) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_cuerpoacademico WHERE fkIntegrante = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_cuerpoacademico SET clave = ?, facultadInstitucional = ?, "
-            + "numeroColaboradores = ?, fechaRegistro = ?, gradoColsolidacion = ?, institucionIndependencial = ?, numeroIntegrantes = ? WHERE clave = ?;";
+            + "numeroColaboradores = ?, fechaRegistro = ?, gradoColsolidacion = ?, institucionIndependencial = ?, numeroIntegrantes = ? WHERE fkIntegrante = ?;";
 
 
     public AcademicBodyDAO() {
@@ -32,6 +32,7 @@ public class AcademicBodyDAO {
     
     
     
+    @Override
     public int insert(AcademicBody academicBody){
         int rows = 0;
         try{
@@ -56,7 +57,9 @@ public class AcademicBodyDAO {
         return rows;
     }
     
-    public void select(int idMemeber){
+    @Override
+    public AcademicBody select(int idMemeber){
+        AcademicBody academic = null;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
@@ -72,7 +75,7 @@ public class AcademicBodyDAO {
                     int numberParticipants = rSet.getInt("numeroIntegrantes");
                     int fkMember = rSet.getInt("fkIntegrante");
                     
-                    AcademicBody academic = new AcademicBody();
+                    academic = new AcademicBody();
                     academic.setKeyCode(keyCode);
                     academic.setInstitucionalFaculty(institucionalFaculty);
                     academic.setNumberCollaborators(numberCollaborators);
@@ -82,6 +85,7 @@ public class AcademicBodyDAO {
                     academic.setNumberParticipants(numberParticipants);
                     academic.setFkMember(fkMember);
                     DBconnection.close(rSet);
+                    return academic;
                 }
             }
             catch(SQLException exception){
@@ -94,9 +98,11 @@ public class AcademicBodyDAO {
                 }
             }
         }
+        return academic;
     }
     
-    public int update (AcademicBody academic){
+    @Override
+    public int update (AcademicBody academic, int idMember){
         int rows = 0;
         if(connect != null){
             try{
@@ -108,7 +114,7 @@ public class AcademicBodyDAO {
                 preStatement.setString(5, academic.getDegreeConsolidation());
                 preStatement.setString(6, academic.getDependecyInstitution());
                 preStatement.setInt(7, academic.getNumberParticipants());
-                preStatement.setInt(8, academic.getFkMember());
+                preStatement.setInt(8, idMember);
                 rows = preStatement.executeUpdate();
             }
             catch(SQLException exception){

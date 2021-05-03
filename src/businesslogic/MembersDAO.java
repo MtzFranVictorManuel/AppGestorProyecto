@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MembersDAO {
+public class MembersDAO implements IMembers{
     private Connection connectionTransmission;
     Connection connect = DBconnection.getConexion();
     PreparedStatement preStatement = null;
@@ -27,15 +27,16 @@ public class MembersDAO {
         this.connectionTransmission = connectionTransmission;
     }
 
+    @Override
     public int insert(Members member){
-        int rows = 1;
+        int rows = 0;
         if(connect != null){
             try {
                 preStatement = connect.prepareStatement(SQL_INSERT);
                 preStatement.setString(1, member.getName());
                 preStatement.setString(2, member.getLastName());
                 preStatement.setString(3, member.getPosition());
-                preStatement.setString(4, member.getBirthday());
+                preStatement.setDate(4, member.getBirthday());
                 preStatement.setString(5, member.getCurp());
                 preStatement.setString(6, member.getEmail());
                 preStatement.setString(7, member.getPassword());
@@ -53,7 +54,8 @@ public class MembersDAO {
         return rows;
     }
     
-    public int update(Members member){
+    @Override
+    public int update(Members member, int idMember){
         int rows = 0;
         if(connect != null){
             try{
@@ -61,10 +63,11 @@ public class MembersDAO {
                 preStatement.setString(1, member.getName());
                 preStatement.setString(2, member.getLastName());
                 preStatement.setString(3, member.getPosition());
-                preStatement.setString(4, member.getBirthday());
+                preStatement.setDate(4, member.getBirthday());
                 preStatement.setString(5, member.getCurp());
                 preStatement.setString(6, member.getEmail());
                 preStatement.setString(7, member.getPassword());
+                preStatement.setInt(8, idMember);
                 rows = preStatement.executeUpdate();
             }
             catch(SQLException exception){
@@ -80,7 +83,9 @@ public class MembersDAO {
         return rows;
     }
     
-    public void select(String nameMember, int idMember){
+    @Override
+    public Members select(String nameMember, int idMember){
+        Members member = null;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
@@ -96,7 +101,7 @@ public class MembersDAO {
                     String email = rSet.getString("email");
                     String password = rSet.getString("contrasenia");
                     
-                    Members member = new Members();
+                    member = new Members();
                     member.setName(name);
                     member.setLastName(lastName);
                     member.setPosition(position);
@@ -105,6 +110,7 @@ public class MembersDAO {
                     member.setEmail(email);
                     member.setPassword(password);
                     DBconnection.close(rSet);
+                    return member;
                 }
             }
             catch(SQLException exception){
@@ -117,13 +123,15 @@ public class MembersDAO {
                 }
             }
         }
+        return member;
     }
     
-    public int delete(Members memeber){
+    @Override
+    public int delete(int idMember){
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_DELETE);
-            preStatement.setInt(1, memeber.getIdMember());
+            preStatement.setInt(1, idMember);
             rows = preStatement.executeUpdate();
         }
         catch(SQLException exception){
