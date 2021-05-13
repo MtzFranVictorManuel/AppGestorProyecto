@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="appgestorproyecto.ScreenAddWorkplanController">
+   <children>
+      <Label layoutX="145.0" layoutY="98.0" text="Workplan key:  " />
+      <Label layoutX="156.0" layoutY="153.0" text="Start date:  " />
+      <Label layoutX="158.0" layoutY="203.0" text="End date:  " />
+      <TextField fx:id="textFieldWorkplanKey" layoutX="232.0" layoutY="94.0" prefHeight="25.0" prefWidth="174.0" />
+      <DatePicker fx:id="datePickerStartDate" layoutX="232.0" layoutY="149.0" />
+      <DatePicker fx:id="datePickerEndDate" layoutX="232.0" layoutY="199.0" />
+      <Button fx:id="buttonAddWorkplan" layoutX="145.0" layoutY="327.0" mnemonicParsing="false" onAction="#buttonAddWorkplanAction" text="Add workplan" />
+      <Button fx:id="buttonCancel" layoutX="380.0" layoutY="327.0" mnemonicParsing="false" onAction="#buttonCancelAction" text="Cancel" />
+   </children>
+</AnchorPane>

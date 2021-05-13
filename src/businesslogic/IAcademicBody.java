@@ -5,10 +5,19 @@
  */
 package businesslogic;
 
+import domain.AcademicBody;
+
 /**
  *
  * @author azul_
  */
-public class CurriculumConsultations {
+public interface IAcademicBody {
+    
+    public int insert(AcademicBody academicBody);
+    
+    public AcademicBody select(int idMemeber);
+    
+    public int update (AcademicBody academic, int idMember);
+    
     
 }
