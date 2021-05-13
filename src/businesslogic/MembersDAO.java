@@ -12,10 +12,11 @@ import java.util.logging.Logger;
 
 public class MembersDAO implements IMembers{
     private Connection connectionTransmission;
-    Connection connect = DBconnection.getConexion();
+    Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_integrante (nombre, apellidos, cargos, fechaNacimiento, curp, email, contrasenia) VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private static final String SQL_SELECT = "SELECT * FROM tbl_integrante WHERE nombre = ? AND idIntegrante = ?;";
+    private static final String SQL_SELECT = "SELECT * FROM tbl_integrante WHERE email = ? AND contrasenia = ?;";
+    private static final String SQL_SELECTMEMBER = "SELECT * FROM tbl_integrante WHERE idIntegrante = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_integrante SET nombre = ?, apellidos = ?, cargos = ?, fechaNacimiento = ?, curp = ?, email = ?, contrasenia = ? WHERE idIntegrante = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_integrante WHERE idIntegrante = ?;";
 
@@ -29,6 +30,7 @@ public class MembersDAO implements IMembers{
 
     @Override
     public int insert(Members member){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try {
@@ -56,6 +58,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public int update(Members member, int idMember){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -84,31 +87,61 @@ public class MembersDAO implements IMembers{
     }
     
     @Override
-    public Members select(String nameMember, int idMember){
+    public Members select(String emailID, String passwordID){
+        connect = DBconnection.getConexion();
         Members member = null;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
-                preStatement.setString(1, nameMember);
-                preStatement.setInt(2, idMember);
+                preStatement.setString(1, emailID);
+                preStatement.setString(2, passwordID);
+                ResultSet rSet = preStatement.executeQuery();
+                if(rSet.next()){                    
+                    member = new Members();
+                    member.setIdMember(rSet.getInt("idIntegrante"));
+                    member.setName(rSet.getString("nombre"));
+                    member.setLastName(rSet.getString("apellidos"));
+                    member.setPosition(rSet.getString("cargos"));
+                    member.setBirthday(rSet.getDate("fechaNacimiento"));
+                    member.setCurp(rSet.getString("curp"));
+                    member.setEmail(rSet.getString("email"));
+                    member.setPassword(rSet.getString("contrasenia"));
+                    DBconnection.close(rSet);
+                    return member;
+                }
+            }
+            catch(SQLException exception){
+                Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
+                return member;
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return member;
+    }
+    
+    @Override
+    public Members select(int idMember){
+        connect = DBconnection.getConexion();
+        Members member = null;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_SELECTMEMBER);
+                preStatement.setInt(1, idMember);
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
-                    String name = rSet.getString("nombre");
-                    String lastName = rSet.getString("apellidos");
-                    String position = rSet.getString("cargos");
-                    Date birthday = rSet.getDate("fechaNacimiento");
-                    String curp = rSet.getString("curp");
-                    String email = rSet.getString("email");
-                    String password = rSet.getString("contrasenia");
-                    
                     member = new Members();
-                    member.setName(name);
-                    member.setLastName(lastName);
-                    member.setPosition(position);
-                    member.setBirthday(birthday);
-                    member.setCurp(curp);
-                    member.setEmail(email);
-                    member.setPassword(password);
+                    member.setName(rSet.getString("nombre"));
+                    member.setLastName(rSet.getString("apellidos"));
+                    member.setPosition(rSet.getString("cargos"));
+                    member.setBirthday(rSet.getDate("fechaNacimiento"));
+                    member.setCurp(rSet.getString("curp"));
+                    member.setEmail(rSet.getString("email"));
+                    member.setPassword(rSet.getString("contrasenia"));
                     DBconnection.close(rSet);
                     return member;
                 }
@@ -128,6 +161,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public int delete(int idMember){
+        connect = DBconnection.getConexion();
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_DELETE);

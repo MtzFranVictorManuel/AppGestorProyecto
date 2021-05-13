@@ -16,7 +16,9 @@ public interface IMembers {
     
     public int update(Members member, int idMember);
     
-    public Members select(String nameMember, int idMember);
+    public Members select(String emailID, String passwordID);
+    
+    public Members select(int idMember);
     
     public int delete(int idMember);
 }

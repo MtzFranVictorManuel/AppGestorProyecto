@@ -12,14 +12,27 @@ import java.sql.Date;
  * @author azul_
  */
 public class AcademicBody {
-    private String keyCode;
-    private String institucionalFaculty;
-    private int numberCollaborators;
-    private Date registrationDate;
-    private String degreeConsolidation;
-    private String dependecyInstitution;
-    private int numberParticipants;
-    private int fkMember;
+    private static int idAcademicBody;
+    private static String keyCode;
+    private static String institucionalFaculty;
+    private static int numberCollaborators;
+    private static Date registrationDate;
+    private static String degreeConsolidation;
+    private static String dependecyInstitution;
+    private static int numberParticipants;
+    private static int fkMember;
+
+    public AcademicBody(int iidAcademicBody, String keyCode, String institucionalFaculty, int numberCollaborators, Date registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticipants, int fkMember) {
+        this.idAcademicBody = idAcademicBody;
+        this.keyCode = keyCode;
+        this.institucionalFaculty = institucionalFaculty;
+        this.numberCollaborators = numberCollaborators;
+        this.registrationDate = registrationDate;
+        this.degreeConsolidation = degreeConsolidation;
+        this.dependecyInstitution = dependecyInstitution;
+        this.numberParticipants = numberParticipants;
+        this.fkMember = fkMember;
+    }
 
     public AcademicBody(String keyCode, String institucionalFaculty, int numberCollaborators, Date registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticipants, int fkMember) {
         this.keyCode = keyCode;
@@ -31,7 +44,7 @@ public class AcademicBody {
         this.numberParticipants = numberParticipants;
         this.fkMember = fkMember;
     }
-
+    
     public AcademicBody(String keyCode, String institucionalFaculty, int numberCollaborators, Date registrationDate, String degreeConsolidation, String dependecyInstitution, int numberParticipants) {
         this.keyCode = keyCode;
         this.institucionalFaculty = institucionalFaculty;
@@ -41,12 +54,14 @@ public class AcademicBody {
         this.dependecyInstitution = dependecyInstitution;
         this.numberParticipants = numberParticipants;
     }
-    
-    
 
     public AcademicBody() {
     }
 
+    public static int getIdAcademicBody() {
+        return idAcademicBody;
+    }
+    
     public int getFkMember() {
         return fkMember;
     }
@@ -77,6 +92,10 @@ public class AcademicBody {
 
     public int getNumberParticipants() {
         return numberParticipants;
+    }
+
+    public static void setIdAcademicBody(int idAcademicBody) {
+        AcademicBody.idAcademicBody = idAcademicBody;
     }
 
     public void setFkMember(int fkMember) {

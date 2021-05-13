@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ObjectiveDAO implements IObjectiveDAO{
     private Connection connectionTransmission;
-    Connection connect = DBconnection.getConexion();
+    Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_objetivo (titulo, estrategia, resultado, meta, descripcion, fkPlanTrabajo) VALUES (?, ?, ?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  fkPlanTrabajo = ?;";
@@ -32,6 +32,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int insert(Objective objective, int idWorkplan){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -59,6 +60,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public Objective select(int idWorkplan){
+        connect = DBconnection.getConexion();
         Objective objective = null;
         if(connect != null){
             try{
@@ -66,18 +68,14 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 preStatement.setInt(1, idWorkplan);
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
-                    String  title = rSet.getString("titulo");
-                    String  strategy = rSet.getString("estrategia");
-                    String  outcome = rSet.getString("resultado");
-                    String  goal = rSet.getString("meta");
-                    String  description = rSet.getString("descripcion");
-                    
                     objective = new Objective();
-                    objective.setTitle(title);
-                    objective.setStrategy(strategy);
-                    objective.setOutcome(outcome);
-                    objective.setGoal(goal);
-                    objective.setDescription(description);
+                    objective.setIdObjective(rSet.getInt("idObjetivo"));
+                    objective.setTitle(rSet.getString("titulo"));
+                    objective.setStrategy(rSet.getString("estrategia"));
+                    objective.setOutcome(rSet.getString("resultado"));
+                    objective.setGoal(rSet.getString("meta"));
+                    objective.setDescription(rSet.getString("descripcion"));
+                    objective.setTargetState(rSet.getString("estadoObjetivo"));
                     DBconnection.close(rSet);
                     return objective;
                 }
@@ -97,6 +95,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int update(Objective objective, int idWorkplan, String title){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -124,6 +123,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int delete(int idWorkplan, String title){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{

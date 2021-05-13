@@ -44,7 +44,7 @@ public class MembersDAOtest {
     @Test
     public void testMethodSelect(){
         MembersDAO memberSelect = new MembersDAO();
-        Assert.assertNotNull(memberSelect.select("Victor Manuel", 1));
+        Assert.assertNotNull(memberSelect.select("zs18019639@estudiantes.uv.mx", "556699"));
     }
     
     @Test

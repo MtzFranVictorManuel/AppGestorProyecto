@@ -11,7 +11,7 @@ package domain;
  */
 public class Workplan {
     private int idWorkplan;
-    private String title;
+    private static String title;
     private String startDate;
     private String endDate;
     private int idAcademicBody;

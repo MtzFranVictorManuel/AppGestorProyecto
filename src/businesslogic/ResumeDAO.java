@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ResumeDAO implements IResume{
     private Connection connectionTransmission;
-    Connection connect = DBconnection.getConexion();
+    Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT  = "INSERT INTO tbl_curriculum (nombre, mision, vision, objetivoGeneral, fkIntegrante) VALUES (?, ?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_curriculum WHERE fkIntegrante = ?;";
@@ -27,6 +27,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public int insert(Resume resumeMember){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -53,6 +54,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public Resume select(int idMember){
+        connect = DBconnection.getConexion();
         Resume resume = null;
         if(connect != null){
             try{
@@ -60,16 +62,11 @@ public class ResumeDAO implements IResume{
                 preStatement.setInt(1, idMember);
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
-                    String name = rSet.getString("nombre");
-                    String mission = rSet.getString("mision");
-                    String vision = rSet.getString("vision");
-                    String generalObjetive = rSet.getString("objetivoGeneral");
-                    
                     resume = new Resume();
-                    resume.setNameResume(name);
-                    resume.setMission(mission);
-                    resume.setVision(vision);
-                    resume.setGeneralObjetive(generalObjetive);
+                    resume.setNameResume(rSet.getString("nombre"));
+                    resume.setMission(rSet.getString("mision"));
+                    resume.setVision(rSet.getString("vision"));
+                    resume.setGeneralObjetive(rSet.getString("objetivoGeneral"));
                     DBconnection.close(rSet);
                     return resume;
                 }
@@ -89,6 +86,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public int update(Resume resumeMember, int idMember){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class AcademicBodyDAO implements IAcademicBody{
     private Connection connectionTransmission;
-    Connection connect = DBconnection.getConexion();
+    Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_cuerpoacademico (clave, facultadInstitucional, "
             + "numeroColaboradores, fechaRegistro, gradoColsolidacion, institucionIndependencial, numeroIntegrantes, fkIntegrante) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -34,6 +34,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public int insert(AcademicBody academicBody){
+        connect = DBconnection.getConexion();
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_INSERT);
@@ -59,6 +60,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public AcademicBody select(int idMemeber){
+        connect = DBconnection.getConexion();
         AcademicBody academic = null;
         if(connect != null){
             try{
@@ -66,24 +68,16 @@ public class AcademicBodyDAO implements IAcademicBody{
                 preStatement.setInt(1, idMemeber);
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
-                    String keyCode = rSet.getString("clave");
-                    String institucionalFaculty = rSet.getString("facultadInstitucional");
-                    int numberCollaborators = rSet.getInt("numeroColaboradores");
-                    Date registrationDate = rSet.getDate("fechaRegistro");
-                    String degreeConsolidation = rSet.getString("gradoColsolidacion");
-                    String dependecyInstitution = rSet.getString("institucionIndependencial");
-                    int numberParticipants = rSet.getInt("numeroIntegrantes");
-                    int fkMember = rSet.getInt("fkIntegrante");
-                    
                     academic = new AcademicBody();
-                    academic.setKeyCode(keyCode);
-                    academic.setInstitucionalFaculty(institucionalFaculty);
-                    academic.setNumberCollaborators(numberCollaborators);
-                    academic.setRegistrationDate(registrationDate);
-                    academic.setDegreeConsolidation(degreeConsolidation);
-                    academic.setDependecyInstitution(dependecyInstitution);
-                    academic.setNumberParticipants(numberParticipants);
-                    academic.setFkMember(fkMember);
+                    academic.setIdAcademicBody(rSet.getInt("idCuerpoAcademico"));
+                    academic.setKeyCode(rSet.getString("clave"));
+                    academic.setInstitucionalFaculty(rSet.getString("facultadInstitucional"));
+                    academic.setNumberCollaborators(rSet.getInt("numeroColaboradores"));
+                    academic.setRegistrationDate(rSet.getDate("fechaRegistro"));
+                    academic.setDegreeConsolidation(rSet.getString("gradoColsolidacion"));
+                    academic.setDependecyInstitution(rSet.getString("institucionIndependencial"));
+                    academic.setNumberParticipants(rSet.getInt("numeroIntegrantes"));
+                    academic.setFkMember(rSet.getInt("fkIntegrante"));
                     DBconnection.close(rSet);
                     return academic;
                 }
@@ -103,6 +97,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public int update (AcademicBody academic, int idMember){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -128,6 +123,5 @@ public class AcademicBodyDAO implements IAcademicBody{
             }
         }
         return rows;
-    }
-    
+    }    
 }

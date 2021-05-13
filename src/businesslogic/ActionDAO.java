@@ -13,9 +13,9 @@ import java.util.logging.Logger;
  *
  * @author azul_
  */
-public class ActionDAO {
+public class ActionDAO implements IActionDAO{
     private Connection connectionTransmission;
-    Connection connect = DBconnection.getConexion();
+    Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_accion (titulo, descripcion, fkObjetivo) VALUES (?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_accion WHERE fkObjetivo = ?;";
@@ -23,6 +23,7 @@ public class ActionDAO {
     private static final String SQL_DELETE = "DELETE FROM tbl_accion WHERE titulo = ? AND idAccion = ?;";
     
     public int insert(Action action, int idObjective){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -46,21 +47,18 @@ public class ActionDAO {
     }
     
     public Action select(int idObjective){
+        connect = DBconnection.getConexion();
         Action action = null;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
                 preStatement.setInt(1, idObjective);
                 ResultSet rSet = preStatement.executeQuery();
-                if(rSet.next()){
-                    int idAction = rSet.getInt("idAccion");
-                    String title = rSet.getString("titulo");
-                    String description = rSet.getString("descripcion");
-                    
+                if(rSet.next()){ 
                     action = new Action();
-                    action.setIdAction(idAction);
-                    action.setTitle(title);
-                    action.setDescription(description);
+                    action.setIdAction(rSet.getInt("idAccion"));
+                    action.setTitle(rSet.getString("titulo"));
+                    action.setDescription(rSet.getString("descripcion"));
                     DBconnection.close(rSet);
                     return action;
                 }
@@ -79,6 +77,7 @@ public class ActionDAO {
     }
     
     public int update(Action action, String titulo, int idObjective){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -103,6 +102,7 @@ public class ActionDAO {
     }
     
     public int delete(String title, int idAccion){
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{

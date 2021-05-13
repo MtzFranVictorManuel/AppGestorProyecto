@@ -11,26 +11,29 @@ public class Objective {
     private String outcome;
     private String goal;
     private String description;
+    private String targetState;
     private int idWorkplan;
 
     public Objective() {
     }
 
-    public Objective(String title, String strategy, String outcome, String goal, String description, int idWorkplan) {
+    public Objective(String title, String strategy, String outcome, String goal, String description, String targetState, int idWorkplan) {
         this.title = title;
         this.strategy = strategy;
         this.outcome = outcome;
         this.goal = goal;
         this.description = description;
+        this.targetState = targetState;
         this.idWorkplan = idWorkplan;
     }
 
-    public Objective(String title, String strategy, String outcome, String goal, String description) {
+    public Objective(String title, String strategy, String outcome, String goal, String description, String targetState) {
         this.title = title;
         this.strategy = strategy;
         this.outcome = outcome;
         this.goal = goal;
         this.description = description;
+        this.targetState = targetState;
     }
 
     public int getIdObjective() {
@@ -55,6 +58,10 @@ public class Objective {
 
     public String getDescription() {
         return description;
+    }
+    
+    public String getTargetState(){
+        return targetState;
     }
 
     public int getIdWorkplan() {
@@ -83,6 +90,10 @@ public class Objective {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public void setTargetState(String targetState){
+        this.targetState = targetState;
     }
 
     public void setIdWorkplan(int idWorkplan) {
