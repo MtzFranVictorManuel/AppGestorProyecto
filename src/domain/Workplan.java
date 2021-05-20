@@ -10,7 +10,7 @@ package domain;
  * @author azul_
  */
 public class Workplan {
-    private int idWorkplan;
+    private static int idWorkplan;
     private static String title;
     private String startDate;
     private String endDate;
@@ -19,6 +19,10 @@ public class Workplan {
     public Workplan() {
     }
 
+    public Workplan(int idWorkplan){
+        this.idWorkplan = idWorkplan;
+    }
+    
     public Workplan(String title, String startDate, String endDate, int idAcademicBody) {
         this.title = title;
         this.startDate = startDate;
@@ -70,10 +74,5 @@ public class Workplan {
 
     public void setIdAcademicBody(int idAcademicBody) {
         this.idAcademicBody = idAcademicBody;
-    }
-
-    
-    
-    
-    
+    }   
 }

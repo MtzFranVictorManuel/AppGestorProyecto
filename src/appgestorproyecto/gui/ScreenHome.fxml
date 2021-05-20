@@ -12,7 +12,6 @@
       <Label layoutX="14.0" layoutY="136.0" text="Name:  " />
       <Label layoutX="14.0" layoutY="172.0" text="position in academic body:  " />
       <Label layoutX="517.0" layoutY="93.0" text="Workplan key" />
-      <ChoiceBox fx:id="choiceBoxWorkplanKey" layoutX="601.0" layoutY="89.0" prefHeight="25.0" prefWidth="187.0" />
       <Label fx:id="labelInstitucionalFaculty" layoutX="105.0" layoutY="101.0" text="Label" />
       <Label fx:id="labelName" layoutX="55.0" layoutY="136.0" text="Label" />
       <Label fx:id="labelPositionAcamedic" layoutX="163.0" layoutY="172.0" text="Label" />
@@ -24,16 +23,17 @@
       <Button layoutX="310.0" layoutY="45.0" mnemonicParsing="false" text="Events" />
       <Button layoutX="417.0" layoutY="45.0" mnemonicParsing="false" text="Production" />
       <Button layoutX="543.0" layoutY="45.0" mnemonicParsing="false" text="Projects" />
-      <TableView layoutX="54.0" layoutY="233.0" prefHeight="246.0" prefWidth="359.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="437.0" AnchorPane.topAnchor="233.0">
+      <TableView fx:id="tableViewPending" layoutX="54.0" layoutY="233.0" prefHeight="246.0" prefWidth="361.0">
         <columns>
-          <TableColumn prefWidth="359.0" resizable="false" text="Pending objectives" />
+          <TableColumn fx:id="columnPendingObjective" prefWidth="359.0" text="Pending objectives" />
         </columns>
       </TableView>
-      <Button layoutX="28.0" layoutY="529.0" mnemonicParsing="false" text="logout" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="771.0" AnchorPane.topAnchor="529.0" />
-      <TableView layoutX="413.0" layoutY="233.0" prefHeight="246.0" prefWidth="359.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="233.0">
+      <Button fx:id="idLogout" layoutX="28.0" layoutY="529.0" mnemonicParsing="false" onAction="#logout" text="logout" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="771.0" AnchorPane.topAnchor="529.0" />
+      <TableView fx:id="tableViewCompleted" layoutX="413.0" layoutY="233.0" prefHeight="246.0" prefWidth="359.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="233.0">
         <columns>
-          <TableColumn prefWidth="358.0" resizable="false" text="C1" />
+          <TableColumn fx:id="columnCompletedObjective" prefWidth="358.0" resizable="false" text="Objectives completed" />
         </columns>
       </TableView>
+      <ComboBox fx:id="comboBox" layoutX="601.0" layoutY="89.0" onAction="#callWorkPlan" prefHeight="25.0" prefWidth="187.0" />
    </children>
 </AnchorPane>

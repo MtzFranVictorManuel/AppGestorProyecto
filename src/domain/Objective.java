@@ -5,8 +5,8 @@ package domain;
  * @author azul_
  */
 public class Objective {
-    private int idObjective;
-    private String title;
+    private static int idObjective;
+    private static String title;
     private String strategy;
     private String outcome;
     private String goal;
@@ -17,6 +17,10 @@ public class Objective {
     public Objective() {
     }
 
+    public Objective(String title){
+        this.title = title;
+    }
+    
     public Objective(String title, String strategy, String outcome, String goal, String description, String targetState, int idWorkplan) {
         this.title = title;
         this.strategy = strategy;

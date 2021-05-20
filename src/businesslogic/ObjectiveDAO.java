@@ -2,12 +2,14 @@ package businesslogic;
 
 import domain.Objective;
 import dataacces.DBconnection;
+import domain.Workplan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -21,6 +23,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
     private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  fkPlanTrabajo = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_objetivo SET titulo = ?, estrategia = ?, resultado = ?, meta = ?, descripcion = ? WHERE titulo = ? AND fkPlanTrabajo  = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
+    private static final String SQL_SELECTPENDING = "select * from tbl_objetivo where estadoObjetivo = ? and fkPlanTrabajo = ?;";
+    private static final String SQL_SELECTCOMPLETED = "SELECT titulo FROM tbl_objetivo WHERE estadoObjetivo = ? AND fkPlanTrabajo = ?;";
+
 
     public ObjectiveDAO() {
     }
@@ -145,4 +150,61 @@ public class ObjectiveDAO implements IObjectiveDAO{
         return rows;
     }
     
+    public ObservableList<Objective> loadObjectivePending(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
+        connect = DBconnection.getConexion();
+        Objective objectiveObject = null;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_SELECTPENDING);
+                preStatement.setString(1, objectStatus);
+                preStatement.setInt(2, idWorkplan);
+                ResultSet rSet = preStatement.executeQuery();
+                while(rSet.next()){
+                    objectiveObject = new Objective();
+                    objectiveObject.setTitle(rSet.getString("titulo"));
+                    objectivePending.add(objectiveObject);
+                }
+                return objectivePending;
+            }
+            catch (SQLException exception) {
+                Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return null;
+    }
+    
+     public ObservableList<Objective> loadObjectiveComplet(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
+        connect = DBconnection.getConexion();
+        Objective objectiveObject = null;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_SELECTPENDING);
+                preStatement.setString(1, objectStatus);
+                preStatement.setInt(2, idWorkplan);
+                ResultSet rSet = preStatement.executeQuery();
+                while(rSet.next()){
+                    objectiveObject = new Objective();
+                    objectiveObject.setTitle(rSet.getString("titulo"));
+                    objectivePending.add(objectiveObject);
+                }
+                return objectivePending;
+            }
+            catch (SQLException exception) {
+                Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return null;
+    }
 }

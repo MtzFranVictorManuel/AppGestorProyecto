@@ -21,6 +21,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     private static final String SQL_SELECT = "SELECT * FROM tbl_cuerpoacademico WHERE fkIntegrante = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_cuerpoacademico SET clave = ?, facultadInstitucional = ?, "
             + "numeroColaboradores = ?, fechaRegistro = ?, gradoColsolidacion = ?, institucionIndependencial = ?, numeroIntegrantes = ? WHERE fkIntegrante = ?;";
+        
 
 
     public AcademicBodyDAO() {

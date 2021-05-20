@@ -37,7 +37,7 @@ public class LoginController implements Initializable {
                 if(EmailValidation.isValid(emailID)){
                     memberInfo.select(emailID, passwordID);
                     if(memberObject.getEmail() == null && memberObject.getPassword() == null){
-                        alert.alertInformation("Error entering email", "Wrong email", "The email that was entered "+ emailID + " is not valid, try a valid email or request one to register.");
+                        alert.alertInformation(null, "Wrong email", "The email that was entered "+ emailID + " is not valid, try a valid email or request one to register.");
                         return;
                     }
                     else if(memberObject.getEmail().equals(emailID) && memberObject.getPassword().equals(passwordID)){    
@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
                     }
                 }
                 else{
-                    alert.alertInformation("Error entering email", "Wrong email", "The email that was entered "+ emailID + " is not valid, try a valid email or request one to register.");
+                    alert.alertError(null, null, "The email entered does not belong to the domains allowed with the system.");
                 }
             }
     }

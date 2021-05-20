@@ -1,4 +1,5 @@
 package businesslogic;
+import appgestorproyecto.AlertGuis;
 import dataacces.DBconnection;
 import domain.AcademicBody;
 import domain.Workplan;
@@ -13,12 +14,15 @@ import javafx.collections.ObservableList;
 
 public class WorkplanDAO implements IWorkplan{
     private Connection connectionTransmission;
+    AlertGuis alert = new AlertGuis();
     Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_plantrabajo (titulo, fechaInicio, fechaFin, fkCuerpoAcademico) VALUES (?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_plantrabajo WHERE fkCuerpoAcademico = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_plantrabajo SET titulo = ?, fechaInicio = ?, fechaFin = ? WHERE titulo = ? AND fkCuerpoAcademico = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_plantrabajo WHERE titulo = ? AND fkCuerpoAcademico = ?";
+    private static final String SQL_VALIDATE = "SELECT titulo FROM tbl_plantrabajo WHERE fkCuerpoAcademico = ? AND titulo = ?";
+    private static final String SQL_GETIDWORKPLAN = "select idPlanTrabajo from tbl_plantrabajo where titulo = ? and fkCuerpoAcademico = ?;";
 
     public WorkplanDAO() {
     }
@@ -134,6 +138,7 @@ public class WorkplanDAO implements IWorkplan{
         return rows;
     }
     
+    @Override
     public ObservableList<String> logWorkplanList(ObservableList<String> workplanList){       
         connect = DBconnection.getConexion();
         AcademicBody academic = new AcademicBody();
@@ -159,4 +164,62 @@ public class WorkplanDAO implements IWorkplan{
         }
         return null;
     }
+    
+    @Override
+    public String validateExistence(int idAcademicBody, String workplanKey){
+        connect = DBconnection.getConexion();
+        String workPlan = null;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_VALIDATE);
+                preStatement.setInt(1, idAcademicBody);
+                preStatement.setString(2, workplanKey);
+                ResultSet rSet = preStatement.executeQuery();
+                if(rSet.next()){
+                    workPlan = rSet.getString("titulo");
+                    DBconnection.close(rSet);
+                    return workPlan;
+                }
+            }
+            catch(SQLException exception){
+                Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return workPlan;
+    }
+    
+    public int queryWorkplanID (String workplanID){
+        connect = DBconnection.getConexion();
+        int idWorkplan = 0;
+        if(connect != null){
+            try{
+                preStatement = connect.prepareStatement(SQL_GETIDWORKPLAN);
+                preStatement.setString(1, workplanID);
+                preStatement.setInt(2, AcademicBody.getIdAcademicBody());
+                ResultSet rSet = preStatement.executeQuery();
+                if(rSet.next()){
+                    idWorkplan = (rSet.getInt("idPlanTrabajo"));
+                    DBconnection.close(rSet);
+                    return idWorkplan;
+                }
+            }
+            catch(SQLException exception){
+                Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
+            }
+            finally{
+                DBconnection.close(preStatement);
+                if(this.connectionTransmission == null){
+                    DBconnection.close(connect);
+                }
+            }
+        }
+        return idWorkplan;
+    }
+    
 }

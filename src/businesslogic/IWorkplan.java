@@ -1,6 +1,7 @@
 package businesslogic;
 
 import domain.Workplan;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,4 +16,8 @@ public interface IWorkplan {
     public int update(Workplan workPlan, String titel, int idAcademicBody);
     
     public int delete(String titel, int idAcademicBody);
+    
+    public ObservableList<String> logWorkplanList(ObservableList<String> workplanList);
+    
+    public String validateExistence(int idAcademicBody, String workplanKey);
 }
