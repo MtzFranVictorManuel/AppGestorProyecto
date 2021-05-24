@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="602.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.GUI.ProyectListController">
+   <children>
+      <Label layoutX="33.0" layoutY="33.0" text="Research Proyect List">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldSearchProyect" layoutX="368.0" layoutY="91.0" prefHeight="31.0" prefWidth="325.0" promptText="Proyect Title">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttonSearch" layoutX="712.0" layoutY="92.0" mnemonicParsing="false" onAction="#searchProyect" prefHeight="30.0" prefWidth="82.0" text="Search" />
+      <TableView fx:id="tableProyectList" layoutX="33.0" layoutY="150.0" prefHeight="335.0" prefWidth="761.0">
+        <columns>
+          <TableColumn fx:id="columnName" prefWidth="283.0" text="Name" />
+          <TableColumn fx:id="columnStartDate" prefWidth="232.0" text="Start date" />
+            <TableColumn fx:id="columnFinishDate" prefWidth="245.0" text="Finish date" />
+        </columns>
+      </TableView>
+      <Button fx:id="buttonRegisterProyect" layoutX="640.0" layoutY="511.0" mnemonicParsing="false" onAction="#registerProyect" prefHeight="49.0" prefWidth="154.0" text="Register proyect">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonExit" layoutX="33.0" layoutY="511.0" mnemonicParsing="false" onAction="#exitProyectList" prefHeight="49.0" prefWidth="154.0" text="Exit">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
