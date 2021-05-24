@@ -5,6 +5,7 @@
  */
 package sgpca.dataaccess;
 
+import sgpca.uv.mx.dataaccess.ConnectDB;
 import java.sql.Connection;
 import org.junit.Assert;
 import org.junit.Test;

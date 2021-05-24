@@ -1,9 +1,10 @@
 package sgpca.bussinesslogic;
 
+import sgpca.uv.mx.bussinesslogic.BlueprintDAO;
 import java.sql.Date;
 import org.junit.Assert;
 import org.junit.Test;
-import sgpca.domain.Blueprint;
+import sgpca.uv.mx.domain.Blueprint;
 
 public class BlueprintDAOTest {
     

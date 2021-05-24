@@ -1,9 +1,10 @@
 package sgpca.bussinesslogic;
 
+import sgpca.uv.mx.bussinesslogic.ResearchProyectDAO;
 import java.sql.Date;
 import junit.framework.Assert;
 import org.junit.Test;
-import sgpca.domain.ResearchProyect;
+import sgpca.uv.mx.domain.ResearchProyect;
 
 public class ResearchProyectDAOTest {
     

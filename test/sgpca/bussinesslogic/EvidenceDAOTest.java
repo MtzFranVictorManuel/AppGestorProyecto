@@ -1,9 +1,10 @@
 package sgpca.bussinesslogic;
 
+import sgpca.uv.mx.bussinesslogic.EvidenceDAO;
 import java.sql.Date;
 import junit.framework.Assert;
 import org.junit.Test;
-import sgpca.domain.Evidence;
+import sgpca.uv.mx.domain.Evidence;
 
 /**
  *
