@@ -88,6 +88,11 @@ public class ScreenHomeController implements Initializable {
     }  
 
     @FXML
+    private void actionProduction(ActionEvent event) {
+        navigationScreen("gui/EvidenceView.fxml");
+    }
+    
+    @FXML
     private void callWorkPlan(ActionEvent event) {
         updateTable();
     }
@@ -132,4 +137,6 @@ public class ScreenHomeController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 }
