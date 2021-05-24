@@ -1,6 +1,7 @@
 package businesslogic;
 
-import domain.Members;
+import sgpca.uv.mx.businesslogic.MembersDAO;
+import sgpca.uv.mx.domain.Members;
 import java.sql.Date;
 import org.junit.After;
 import org.junit.AfterClass;

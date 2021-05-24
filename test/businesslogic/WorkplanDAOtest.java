@@ -1,6 +1,7 @@
 package businesslogic;
 
-import domain.Workplan;
+import sgpca.uv.mx.businesslogic.WorkplanDAO;
+import sgpca.uv.mx.domain.Workplan;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

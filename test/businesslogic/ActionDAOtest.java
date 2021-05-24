@@ -5,7 +5,8 @@
  */
 package businesslogic;
 
-import domain.Action;
+import sgpca.uv.mx.businesslogic.ActionDAO;
+import sgpca.uv.mx.domain.Action;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

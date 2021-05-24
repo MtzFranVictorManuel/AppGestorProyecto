@@ -3,8 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/ObjectiveDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/gui/ScreenAddObjectiveAndAction.fxml</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/ScreenManageBodyWorkplanController.java</file>
             <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/WorkplanDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/ScreenAddWorkplanController.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/ScreenAddObjectiveAndActionController.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Objective.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/AcademicBody.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Action.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/ActionDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/AcademicBodyDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/AlertGuis.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/businesslogic/ObjectiveDAO.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/EmailValidation.java</file>
+            <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/LoginController.java</file>
             <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/appgestorproyecto/ScreenHomeController.java</file>
             <file>file:/E:/Documentos/NetBeans/AppGestorProyecto/src/domain/Workplan.java</file>
         </group>

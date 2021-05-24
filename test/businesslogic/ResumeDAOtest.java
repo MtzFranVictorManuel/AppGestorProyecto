@@ -1,6 +1,7 @@
 package businesslogic;
 
-import domain.Resume;
+import sgpca.uv.mx.businesslogic.ResumeDAO;
+import sgpca.uv.mx.domain.Resume;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

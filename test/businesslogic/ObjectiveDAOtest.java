@@ -1,6 +1,7 @@
 package businesslogic;
 
-import domain.Objective;
+import sgpca.uv.mx.businesslogic.ObjectiveDAO;
+import sgpca.uv.mx.domain.Objective;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;

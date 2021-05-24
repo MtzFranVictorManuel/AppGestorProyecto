@@ -5,6 +5,7 @@
  */
 package dataacces;
 
+import sgpca.uv.mx.dataacces.DBconnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.junit.After;
