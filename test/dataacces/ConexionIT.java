@@ -5,7 +5,7 @@
  */
 package dataacces;
 
-import sgpca.uv.mx.dataacces.DBconnection;
+import sgpca.uv.mx.dataacces.ConnectDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.junit.After;
@@ -46,19 +46,19 @@ public class ConexionIT {
 
 
     /**
-     * Test of getConexion method, of class DBconnection.
+     * Test of getConexion method, of class ConnectDB.
      */
     @Test
     public void testGetConexion() throws SQLException{
-        DBconnection connect = new DBconnection();
+        ConnectDB connect = new ConnectDB();
         Connection conectOn = connect.getConexion();
         Assert.assertNotNull(conectOn);
     }
     
     @Test
     public void testCloseConexion() throws SQLException{
-        DBconnection connect = new DBconnection();
+        ConnectDB connect = new ConnectDB();
         Connection conectOff = connect.getConexion();
-        DBconnection.close(conectOff);
+        ConnectDB.close(conectOff);
     }
 }

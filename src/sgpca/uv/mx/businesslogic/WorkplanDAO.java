@@ -1,6 +1,6 @@
 package sgpca.uv.mx.businesslogic;
 import sgpca.uv.mx.AlertGuis;
-import sgpca.uv.mx.dataacces.DBconnection;
+import sgpca.uv.mx.dataacces.ConnectDB;
 import sgpca.uv.mx.domain.AcademicBody;
 import sgpca.uv.mx.domain.Workplan;
 import java.sql.Connection;
@@ -35,7 +35,7 @@ public class WorkplanDAO implements IWorkplan{
     
     @Override
     public int insert(Workplan workplan, int idAcademic){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_INSERT);
@@ -49,9 +49,9 @@ public class WorkplanDAO implements IWorkplan{
             Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
         }
         finally{
-            DBconnection.close(preStatement);
+            ConnectDB.close(preStatement);
             if(this.connectionTransmission == null){
-                DBconnection.close(connect); 
+                ConnectDB.close(connect); 
             }
         }
         return rows;
@@ -59,7 +59,7 @@ public class WorkplanDAO implements IWorkplan{
      
     @Override
     public Workplan select(int idAcademicBody){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Workplan workPlan = null;
         if(connect != null){
             try{
@@ -72,7 +72,7 @@ public class WorkplanDAO implements IWorkplan{
                     workPlan.setTitle(rSet.getString("titulo"));
                     workPlan.setStartDate(rSet.getString("fechaInicio"));
                     workPlan.setEndDate(rSet.getString("fechaFin"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return workPlan;
                 }
             }
@@ -80,9 +80,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class WorkplanDAO implements IWorkplan{
     }
     
     public Workplan selectInfo(int idWorkplan){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Workplan workPlan = null;
         if(connect != null){
             try{
@@ -105,7 +105,7 @@ public class WorkplanDAO implements IWorkplan{
                     Date endDate = rSet.getDate("fechaFin");
                     workPlan.setStartDate(startDate.toString());
                     workPlan.setEndDate(endDate.toString());
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return workPlan;
                 }
             }
@@ -113,9 +113,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -124,7 +124,7 @@ public class WorkplanDAO implements IWorkplan{
     
     @Override
     public int update(Workplan workPlan, String titel, int idAcademicBody){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -140,9 +140,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -151,7 +151,7 @@ public class WorkplanDAO implements IWorkplan{
     
     @Override
     public int delete(String title, int idAcademicBody){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -164,9 +164,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 } 
             }
         }
@@ -175,7 +175,7 @@ public class WorkplanDAO implements IWorkplan{
     
     @Override
     public ObservableList<String> logWorkplanList(ObservableList<String> workplanList){       
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         AcademicBody academic = new AcademicBody();
         if(connect != null){
             try{
@@ -191,9 +191,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -202,7 +202,7 @@ public class WorkplanDAO implements IWorkplan{
     
     @Override
     public String validateExistence(int idAcademicBody, String workplanKey){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         String workPlan = null;
         if(connect != null){
             try{
@@ -212,7 +212,7 @@ public class WorkplanDAO implements IWorkplan{
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
                     workPlan = rSet.getString("titulo");
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return workPlan;
                 }
             }
@@ -220,9 +220,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -230,7 +230,7 @@ public class WorkplanDAO implements IWorkplan{
     }
     
     public int queryWorkplanID (String workplanID){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int idWorkplan = 0;
         if(connect != null){
             try{
@@ -240,7 +240,7 @@ public class WorkplanDAO implements IWorkplan{
                 ResultSet rSet = preStatement.executeQuery();
                 if(rSet.next()){
                     idWorkplan = (rSet.getInt("idPlanTrabajo"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return idWorkplan;
                 }
             }
@@ -248,9 +248,9 @@ public class WorkplanDAO implements IWorkplan{
                 Logger.getLogger(WorkplanDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }

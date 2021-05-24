@@ -1,7 +1,7 @@
 package sgpca.uv.mx.businesslogic;
 
 import sgpca.uv.mx.domain.Members;
-import sgpca.uv.mx.dataacces.DBconnection;
+import sgpca.uv.mx.dataacces.ConnectDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -30,7 +30,7 @@ public class MembersDAO implements IMembers{
 
     @Override
     public int insert(Members member){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try {
@@ -47,9 +47,9 @@ public class MembersDAO implements IMembers{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -58,7 +58,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public int update(Members member, int idMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -77,9 +77,9 @@ public class MembersDAO implements IMembers{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -88,7 +88,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public Members select(String emailID, String passwordID){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Members member = null;
         if(connect != null){
             try{
@@ -106,7 +106,7 @@ public class MembersDAO implements IMembers{
                     member.setCurp(rSet.getString("curp"));
                     member.setEmail(rSet.getString("email"));
                     member.setPassword(rSet.getString("contrasenia"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return member;
                 }
             }
@@ -115,9 +115,9 @@ public class MembersDAO implements IMembers{
                 return member;
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -126,7 +126,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public Members select(int idMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Members member = null;
         if(connect != null){
             try{
@@ -142,7 +142,7 @@ public class MembersDAO implements IMembers{
                     member.setCurp(rSet.getString("curp"));
                     member.setEmail(rSet.getString("email"));
                     member.setPassword(rSet.getString("contrasenia"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return member;
                 }
             }
@@ -150,9 +150,9 @@ public class MembersDAO implements IMembers{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -161,7 +161,7 @@ public class MembersDAO implements IMembers{
     
     @Override
     public int delete(int idMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_DELETE);
@@ -172,9 +172,9 @@ public class MembersDAO implements IMembers{
             Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
         }
         finally{
-        DBconnection.close(preStatement);
+        ConnectDB.close(preStatement);
             if(this.connectionTransmission == null){
-                DBconnection.close(connect);
+                ConnectDB.close(connect);
             } 
         }
         return rows;

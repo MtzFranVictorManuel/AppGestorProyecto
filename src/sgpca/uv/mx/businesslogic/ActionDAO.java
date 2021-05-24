@@ -1,6 +1,6 @@
 package sgpca.uv.mx.businesslogic;
 
-import sgpca.uv.mx.dataacces.DBconnection;
+import sgpca.uv.mx.dataacces.ConnectDB;
 import sgpca.uv.mx.domain.Action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class ActionDAO implements IActionDAO{
     private static final String SQL_DELETE = "DELETE FROM tbl_accion WHERE titulo = ? AND idAccion = ?;";
     
     public int insert(Action action, int idObjective){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -37,9 +37,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -47,7 +47,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public Action select(int idObjective){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Action action = null;
         if(connect != null){
             try{
@@ -59,7 +59,7 @@ public class ActionDAO implements IActionDAO{
                     action.setIdAction(rSet.getInt("idAccion"));
                     action.setTitle(rSet.getString("titulo"));
                     action.setDescription(rSet.getString("descripcion"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return action;
                 }
             }
@@ -67,9 +67,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public int update(Action action, String titulo, int idObjective){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -92,9 +92,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -102,7 +102,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public int delete(String title, int idAccion){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -115,9 +115,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }

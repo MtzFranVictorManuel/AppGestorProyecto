@@ -1,6 +1,6 @@
 package sgpca.uv.mx.businesslogic;
 
-import sgpca.uv.mx.dataacces.DBconnection;
+import sgpca.uv.mx.dataacces.ConnectDB;
 import sgpca.uv.mx.domain.Members;
 import sgpca.uv.mx.domain.Resume;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public int insert(Resume resumeMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -43,9 +43,9 @@ public class ResumeDAO implements IResume{
                 Logger.getLogger(ResumeDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -54,7 +54,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public Resume select(int idMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         Resume resume = null;
         if(connect != null){
             try{
@@ -67,7 +67,7 @@ public class ResumeDAO implements IResume{
                     resume.setMission(rSet.getString("mision"));
                     resume.setVision(rSet.getString("vision"));
                     resume.setGeneralObjetive(rSet.getString("objetivoGeneral"));
-                    DBconnection.close(rSet);
+                    ConnectDB.close(rSet);
                     return resume;
                 }
             }
@@ -75,9 +75,9 @@ public class ResumeDAO implements IResume{
                 Logger.getLogger(ResumeDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
@@ -86,7 +86,7 @@ public class ResumeDAO implements IResume{
     
     @Override
     public int update(Resume resumeMember, int idMember){
-        connect = DBconnection.getConexion();
+        connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -102,9 +102,9 @@ public class ResumeDAO implements IResume{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                DBconnection.close(preStatement);
+                ConnectDB.close(preStatement);
                 if(this.connectionTransmission == null){
-                    DBconnection.close(connect);
+                    ConnectDB.close(connect);
                 }
             }
         }
