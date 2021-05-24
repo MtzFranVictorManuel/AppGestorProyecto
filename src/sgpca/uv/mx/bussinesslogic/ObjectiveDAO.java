@@ -1,8 +1,6 @@
 package sgpca.uv.mx.bussinesslogic;
 
 import sgpca.uv.mx.domain.Objective;
-import sgpca.uv.mx.dataacces.ConnectDB;
-import sgpca.uv.mx.domain.Workplan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import sgpca.uv.mx.dataaccess.DBconnection;
 
 /**
  *
@@ -37,7 +36,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int insert(Objective objective, int idWorkplan){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -54,9 +53,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -65,7 +64,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public Objective select(int idWorkplan){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         Objective objective = null;
         if(connect != null){
             try{
@@ -81,7 +80,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
                     objective.setGoal(rSet.getString("meta"));
                     objective.setDescription(rSet.getString("descripcion"));
                     objective.setTargetState(rSet.getString("estadoObjetivo"));
-                    ConnectDB.close(rSet);
+                    DBconnection.close(rSet);
                     return objective;
                 }
             }
@@ -89,9 +88,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -100,7 +99,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int update(Objective objective, int idWorkplan, String title){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -117,9 +116,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -128,7 +127,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     
     @Override
     public int delete(int idWorkplan, String title){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -141,9 +140,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -151,7 +150,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     }
     
     public ObservableList<Objective> loadObjectivePending(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         Objective objectiveObject = null;
         if(connect != null){
             try{
@@ -170,9 +169,9 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -180,7 +179,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     }
     
      public ObservableList<Objective> loadObjectiveComplet(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         Objective objectiveObject = null;
         if(connect != null){
             try{
@@ -193,16 +192,16 @@ public class ObjectiveDAO implements IObjectiveDAO{
                     objectiveObject.setTitle(rSet.getString("titulo"));
                     objectivePending.add(objectiveObject);
                 }
-                ConnectDB.close(rSet);
+                DBconnection.close(rSet);
                 return objectivePending;
             }
             catch (SQLException exception) {
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -210,7 +209,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     }
      
     public ObservableList<Objective> selectTableView(ObservableList<Objective> tableInfo, int idWorkplan){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         Objective objective = null;
         if(connect != null){
             try{
@@ -227,16 +226,16 @@ public class ObjectiveDAO implements IObjectiveDAO{
                     objective.setTargetState(rSet.getString("estadoObjetivo"));   
                     tableInfo.add(objective);
                 }
-                ConnectDB.close(rSet);
+                DBconnection.close(rSet);
                 return tableInfo;
             }
             catch (SQLException exception) {
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }

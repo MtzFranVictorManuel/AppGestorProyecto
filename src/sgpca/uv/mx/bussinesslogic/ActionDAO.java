@@ -1,6 +1,5 @@
 package sgpca.uv.mx.bussinesslogic;
 
-import sgpca.uv.mx.dataacces.ConnectDB;
 import sgpca.uv.mx.domain.Action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sgpca.uv.mx.dataaccess.DBconnection;
 
 /**
  *
@@ -23,7 +23,7 @@ public class ActionDAO implements IActionDAO{
     private static final String SQL_DELETE = "DELETE FROM tbl_accion WHERE titulo = ? AND idAccion = ?;";
     
     public int insert(Action action, int idObjective){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -37,9 +37,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -47,7 +47,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public Action select(int idObjective){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         Action action = null;
         if(connect != null){
             try{
@@ -59,7 +59,7 @@ public class ActionDAO implements IActionDAO{
                     action.setIdAction(rSet.getInt("idAccion"));
                     action.setTitle(rSet.getString("titulo"));
                     action.setDescription(rSet.getString("descripcion"));
-                    ConnectDB.close(rSet);
+                    DBconnection.close(rSet);
                     return action;
                 }
             }
@@ -67,9 +67,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public int update(Action action, String titulo, int idObjective){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -92,9 +92,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -102,7 +102,7 @@ public class ActionDAO implements IActionDAO{
     }
     
     public int delete(String title, int idAccion){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -115,9 +115,9 @@ public class ActionDAO implements IActionDAO{
                 Logger.getLogger(ActionDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }

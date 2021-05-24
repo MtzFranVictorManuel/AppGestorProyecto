@@ -1,7 +1,7 @@
 package sgpca.uv.mx.bussinesslogic;
 
 import java.sql.PreparedStatement;
-import sgpca.uv.mx.dataacces.ConnectDB;
+import sgpca.uv.mx.dataaccess.DBconnection;
 import sgpca.uv.mx.domain.AcademicBody;
 import java.sql.Connection;
 import java.sql.Date;
@@ -35,7 +35,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public int insert(AcademicBody academicBody){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         try{
             preStatement = connect.prepareStatement(SQL_INSERT);
@@ -50,9 +50,9 @@ public class AcademicBodyDAO implements IAcademicBody{
         }catch(SQLException exception){
             Logger.getLogger(AcademicBodyDAO.class.getName()).log(Level.SEVERE, null, exception);
         }finally{
-            ConnectDB.close(preStatement);
+            DBconnection.close(preStatement);
             if(this.connectionTransmission == null){
-                ConnectDB.close(connect);
+                DBconnection.close(connect);
             }
         }
         
@@ -61,7 +61,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public AcademicBody select(int idMemeber){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         AcademicBody academic = null;
         if(connect != null){
             try{
@@ -79,7 +79,7 @@ public class AcademicBodyDAO implements IAcademicBody{
                     academic.setDependecyInstitution(rSet.getString("institucionIndependencial"));
                     academic.setNumberParticipants(rSet.getInt("numeroIntegrantes"));
                     academic.setFkMember(rSet.getInt("fkIntegrante"));
-                    ConnectDB.close(rSet);
+                    DBconnection.close(rSet);
                     return academic;
                 }
             }
@@ -87,9 +87,9 @@ public class AcademicBodyDAO implements IAcademicBody{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
@@ -98,7 +98,7 @@ public class AcademicBodyDAO implements IAcademicBody{
     
     @Override
     public int update (AcademicBody academic, int idMember){
-        connect = ConnectDB.getConexion();
+        connect = DBconnection.getConexion();
         int rows = 0;
         if(connect != null){
             try{
@@ -117,9 +117,9 @@ public class AcademicBodyDAO implements IAcademicBody{
                 Logger.getLogger(MembersDAO.class.getName()).log(Level.SEVERE, null, exception);
             }
             finally{
-                ConnectDB.close(preStatement);
+                DBconnection.close(preStatement);
                 if(this.connectionTransmission == null){
-                    ConnectDB.close(connect);
+                    DBconnection.close(connect);
                 }
             }
         }
