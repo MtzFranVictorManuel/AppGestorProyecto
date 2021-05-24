@@ -1,4 +1,4 @@
-package sgpca.GUI;
+package sgpca;
 
 import java.io.IOException;
 import java.net.URL;

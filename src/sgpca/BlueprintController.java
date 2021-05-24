@@ -1,4 +1,4 @@
-package sgpca.GUI;
+package sgpca;
 
 import java.net.URL;
 import java.sql.Date;
