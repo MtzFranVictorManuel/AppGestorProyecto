@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -144,5 +146,15 @@ public class EvidenceController implements Initializable {
         }
     }
     
-    
+    public void navigationScreen(String url){
+        try{
+            Stage stage = (Stage) buttonCancel.getScene().getWindow();
+            Scene escena = new Scene(FXMLLoader.load(getClass().getResource(url)));
+            stage.setScene(escena);
+            stage.setResizable(false);
+            stage.show();
+        }catch(IOException ex){
+            Logger.getLogger(EvidenceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 }

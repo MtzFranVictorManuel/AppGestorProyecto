@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="AppGestorProyecto.jnlp">
+  <information>
+    <title>AppGestorProyecto</title>
+    <vendor>azul_</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="AppGestorProyecto.jar" size="102322" download="eager" />
+    <jar href="lib\hamcrest-all-1.3.jar" size="306578" download="eager" />
+    <jar href="lib\junit-4.12.jar" size="316791" download="eager" />
+    <jar href="lib\mockito-core-3.9.0.jar" size="666328" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.23.jar" size="2415211" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="AppGestorProyecto" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="sgpca.uv.mx.FXMLRunMain"  name="AppGestorProyecto" />
+  <update check="always"/>
+</jnlp>
