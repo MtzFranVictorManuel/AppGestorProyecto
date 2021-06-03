@@ -12,8 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import sgpca.uv.mx.ScreenHomeController;
 import sgpca.uv.mx.businesslogic.ObjectiveDAO;
 import sgpca.uv.mx.businesslogic.WorkplanDAO;
 import sgpca.uv.mx.domain.AcademicBody;
@@ -76,7 +74,7 @@ public class ScreenManageBodyWorkplanController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) { 
         workplanInfo.selectInfo(Workplan.getIdWorkplan());
         textFieldWorkplan.setText(workplanObject.getTitle());
         datePickerStartDate.setValue(LOCAL_DATE(workplanObject.getStartDate()));
@@ -117,23 +115,20 @@ public class ScreenManageBodyWorkplanController implements Initializable {
             workplanObject.setTitle(workplanKey);
             workplanObject.setStartDate(startDate);
             workplanObject.setEndDate(endDate);
-            if(!workplanKey.equals(getExistence))
-            {
-                if(alert.alertConfirmation("Confirmation insert", "Confirmation", "You are adding the following data to "
-                        + "the database, are you sure you want to register the following data? \n" + "Workplan Key: \n" + workplanKey 
-                        + "\nStart date: \n" + startDate + "\nEnd date: \n" + endDate) == true)
-                {
+            if (!workplanKey.equals(getExistence)) {
+                if (alert.alertConfirmation("Confirmation insert", "Confirmation", "You are adding the following data to "
+                        + "the database, are you sure you want to register the following data? \n" + "Workplan Key: \n" + workplanKey
+                        + "\nStart date: \n" + startDate + "\nEnd date: \n" + endDate) == true) {
                     System.out.println(workplanObject.getTitle());
-                    workplanInfo.update(workplanObject, workplan,AcademicBody.getIdAcademicBody());
+                    workplanInfo.update(workplanObject, workplan, AcademicBody.getIdAcademicBody());
                     alert.alertInformation("Aggregation successfully", null, "The data obtained was entered correctly.");
                     buttonChangeState.setText("Edit workplan");
                     valuesNotEditable();
                 }
-            }
-            else{
-                alert.alertWarning("Existence of value in database", "Warning", "The entered value "+ workplanKey +" is "
-                    + "already registered in the database, try another key for the work plan. ");
-            }          
+            } else {
+                alert.alertWarning("Existence of value in database", "Warning", "The entered value " + workplanKey + " is "
+                        + "already registered in the database, try another key for the work plan. ");
+            }         
         }
         catch(NullPointerException exception){
             alert.alertInformation("Empty fields", null, "Complete the values marked with * to register a work plan.");
@@ -142,6 +137,7 @@ public class ScreenManageBodyWorkplanController implements Initializable {
 
     @FXML
     private void addObjective(ActionEvent event) {
+        navigationScreen("gui/ScreenAddObjective.fxml");
     }
 
     @FXML
@@ -182,6 +178,4 @@ public class ScreenManageBodyWorkplanController implements Initializable {
         tableViewObjective.setItems(objectiveInfo.selectTableView(observabelTable, Workplan.getIdWorkplan()));
         
     }
-
-    
 }

@@ -1,7 +1,6 @@
 package sgpca.uv.mx.businesslogic;
 
 import sgpca.uv.mx.dataacces.ConnectDB;
-import sgpca.uv.mx.domain.Members;
 import sgpca.uv.mx.domain.Resume;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

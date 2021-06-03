@@ -5,18 +5,19 @@
  */
 package sgpca.uv.mx.businesslogic;
 
-import sgpca.uv.mx.domain.Action;
+import sgpca.uv.mx.domain.ActionObjective;
 
 /**
  *
  * @author azul_
  */
 public interface IActionDAO {
-    public int insert(Action action, int idObjective);
     
-    public Action select(int idObjective);
+    public int insert(ActionObjective action, int idObjective);
     
-    public int update(Action action, String titulo, int idObjective);
+    public ActionObjective select(int idObjective);
+    
+    public int update(ActionObjective action, String titulo, int idObjective);
     
     public int delete(String title, int idAccion);
 }

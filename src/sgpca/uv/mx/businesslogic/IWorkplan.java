@@ -13,6 +13,8 @@ public interface IWorkplan {
     
     public Workplan select(int idAcademicBody);
     
+    public Workplan selectInfo(int idWorkplan);
+    
     public int update(Workplan workPlan, String titel, int idAcademicBody);
     
     public int delete(String titel, int idAcademicBody);
@@ -20,4 +22,6 @@ public interface IWorkplan {
     public ObservableList<String> logWorkplanList(ObservableList<String> workplanList);
     
     public String validateExistence(int idAcademicBody, String workplanKey);
+    
+    public int queryWorkplanID (String workplanID);
 }

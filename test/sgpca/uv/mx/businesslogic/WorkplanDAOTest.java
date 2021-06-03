@@ -1,4 +1,4 @@
-package businesslogic;
+package sgpca.uv.mx.businesslogic;
 
 import sgpca.uv.mx.businesslogic.WorkplanDAO;
 import sgpca.uv.mx.domain.Workplan;
@@ -13,9 +13,9 @@ import org.junit.Test;
  *
  * @author azul_
  */
-public class WorkplanDAOtest {
+public class WorkplanDAOTest {
     
-    public WorkplanDAOtest() {
+    public WorkplanDAOTest() {
     }
     
     @BeforeClass
@@ -38,7 +38,7 @@ public class WorkplanDAOtest {
      * Test of insert method, of class WorkplanDAO.
      */
     @Test
-    public void testMethodInsert() {
+    public void insertTest() {
         WorkplanDAO workPlantInsert = new WorkplanDAO();
         Workplan workPlan = new Workplan("facISO00111", "2021-05-01", "2022-01-25", 2);
         Assert.assertNotNull(workPlantInsert.insert(workPlan, 2));
@@ -48,7 +48,7 @@ public class WorkplanDAOtest {
      * Test of select method, of class WorkplanDAO.
      */
     @Test
-    public void testMethodSelect(){
+    public void selectTest(){
         WorkplanDAO workPlanSelect = new WorkplanDAO();
         Assert.assertNotNull(workPlanSelect.select(1));
     }
@@ -57,7 +57,7 @@ public class WorkplanDAOtest {
      * Test of  method update, of class WorkplanDAO.
      */
     @Test
-    public void testMethodUpdate(){
+    public void updateTest(){
         WorkplanDAO workPlanUpdate = new WorkplanDAO();
         Workplan workPlan = new Workplan("ISO-0014", "2020-05-01", "2021-06-30");
         Assert.assertNotNull(workPlanUpdate.update(workPlan, "facISO00111", 2));
@@ -67,7 +67,7 @@ public class WorkplanDAOtest {
      * Test of  method delete, of class WorkplanDAO.
      */
     @Test
-    public void testMethodDelete(){
+    public void deleteTest(){
         WorkplanDAO workPlanDelete = new WorkplanDAO();
         Assert.assertNotNull(workPlanDelete.delete("ISO-0014", 2));
     }

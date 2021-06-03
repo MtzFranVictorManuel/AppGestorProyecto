@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.uv.mx.ScreenEditPersonalInformationController">
+   <children>
+      <Label layoutX="121.0" layoutY="87.0" text="Name:  " />
+      <Label layoutX="445.0" layoutY="87.0" text="Surname:  " />
+      <Label layoutX="24.0" layoutY="139.0" text="Academic body position:  " />
+      <Label layoutX="425.0" layoutY="139.0" text="Date of birth:  " />
+      <Label layoutX="122.0" layoutY="180.0" text="CURP:  " />
+      <Label layoutX="123.0" layoutY="221.0" text="Email:  " />
+      <Label layoutX="420.0" layoutY="180.0" text="Phone number:  " />
+      <TextField fx:id="textFieldName" layoutX="162.0" layoutY="83.0" prefHeight="25.0" prefWidth="249.0" />
+      <TextField fx:id="textFieldSurname" layoutX="507.0" layoutY="83.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="textFieldAcademicBodyPosition" layoutX="162.0" layoutY="135.0" prefHeight="25.0" prefWidth="249.0" />
+      <TextField fx:id="textFieldEmail" layoutX="162.0" layoutY="217.0" prefHeight="25.0" prefWidth="249.0" />
+      <TextField fx:id="textFieldPhoneNumber" layoutX="508.0" layoutY="176.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="textFieldCurp" layoutX="162.0" layoutY="176.0" prefHeight="25.0" prefWidth="249.0" />
+      <DatePicker fx:id="datePickerDateBirth" layoutX="507.0" layoutY="135.0" prefHeight="25.0" prefWidth="232.0" />
+      <Button fx:id="buttonExit" layoutX="97.0" layoutY="423.0" mnemonicParsing="false" onAction="#actionExit" text="Exit" />
+      <Button layoutX="649.0" layoutY="423.0" mnemonicParsing="false" onAction="#actionEditInformaion" text="Edit information" />
+   </children>
+</AnchorPane>

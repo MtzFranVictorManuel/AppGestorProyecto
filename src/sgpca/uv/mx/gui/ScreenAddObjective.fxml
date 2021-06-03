@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="anchorPanelObjective" prefHeight="857.0" prefWidth="853.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sgpca.uv.mx.ScreenAddObjectiveController">
+   <children>
+      <Label layoutX="37.0" layoutY="127.0" text="Objective title:  " />
+      <Label layoutX="418.0" layoutY="127.0" text="Strategy:  " />
+      <Label layoutX="85.0" layoutY="160.0" text="Goal:  " />
+      <Label layoutX="43.0" layoutY="228.0" text="Description:  " />
+      <Button fx:id="buttonAddObjective" layoutX="687.0" layoutY="323.0" mnemonicParsing="false" onAction="#actionAddObjective" text="Add objective" />
+      <TextField fx:id="textFieldObjectiveTitle" layoutX="118.0" layoutY="123.0" prefHeight="25.0" prefWidth="261.0" />
+      <TextField fx:id="textFieldObjectiveStrategy" layoutX="472.0" layoutY="123.0" prefHeight="25.0" prefWidth="305.0" />
+      <TextArea fx:id="textFieldObjectiveDescription" layoutX="118.0" layoutY="228.0" prefHeight="79.0" prefWidth="658.0" />
+      <TextArea fx:id="textFieldObjectiveGoal" layoutX="118.0" layoutY="160.0" prefHeight="56.0" prefWidth="658.0" />
+      <Pane layoutX="38.0" layoutY="361.0" prefHeight="445.0" prefWidth="777.0">
+         <children>
+            <Button fx:id="buttonDeleteAction" layoutX="675.0" layoutY="193.0" mnemonicParsing="false" onAction="#actionDeleteAction" text="Delete" />
+            <Label layoutX="50.0" layoutY="67.0" text="Action title:  " />
+            <Label layoutX="47.0" layoutY="110.0" text="Description:  " />
+            <Label layoutX="74.0" layoutY="197.0" text="Result:  " />
+            <TextField fx:id="textFieldActionTitle" layoutX="118.0" layoutY="63.0" prefHeight="25.0" prefWidth="367.0" />
+            <TextArea fx:id="textFieldActionDescription" layoutX="118.0" layoutY="110.0" prefHeight="64.0" prefWidth="609.0" />
+            <TextField fx:id="textFieldActionResult" layoutX="118.0" layoutY="193.0" prefHeight="25.0" prefWidth="367.0" />
+            <TableView fx:id="tableViewAction" layoutX="54.0" layoutY="234.0" prefHeight="200.0" prefWidth="692.0">
+              <columns>
+                <TableColumn fx:id="tableColumnActionTitle" editable="false" prefWidth="175.0" sortType="DESCENDING" sortable="false" text="Action title" />
+                <TableColumn fx:id="tableColumnActionDescription" editable="false" prefWidth="305.0" sortType="DESCENDING" sortable="false" text="Description" />
+                  <TableColumn fx:id="tableColumnActionResult" editable="false" prefWidth="211.0" sortType="DESCENDING" sortable="false" text="Result" />
+              </columns>
+            </TableView>
+            <Button fx:id="buttonAddAction" layoutX="559.0" layoutY="193.0" mnemonicParsing="false" onAction="#actionAddAction" text="Add Action" />
+         </children>
+      </Pane>
+      <Button fx:id="buttonExitObjective" layoutX="90.0" layoutY="806.0" mnemonicParsing="false" onAction="#actionExitObject" text="Exit" />
+   </children>
+</AnchorPane>

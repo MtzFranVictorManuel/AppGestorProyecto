@@ -4,28 +4,28 @@ package sgpca.uv.mx.domain;
  *
  * @author azul_
  */
-public class Action {
+public class ActionObjective {
     private int idAction;
     private String title;
     private String description;
     private String result;
     private int idObjective;
 
-    public Action() {
+    public ActionObjective() {
     }
 
-    public Action(int idAction, String title, String description) {
+    public ActionObjective(int idAction, String title, String description) {
         this.idAction = idAction;
         this.title = title;
         this.description = description;
     }
 
-    public Action(String title, String description) {
+    public ActionObjective(String title, String description) {
         this.title = title;
         this.description = description;
     }
 
-    public Action(String title, String description, int idObjective) {
+    public ActionObjective(String title, String description, int idObjective) {
         this.title = title;
         this.description = description;
         this.idObjective = idObjective;

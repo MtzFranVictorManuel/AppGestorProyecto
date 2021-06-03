@@ -7,14 +7,15 @@ import java.sql.Date;
  * @author azul_
  */
 public class Members {
-    public static int idMember;
-    public static String name;
-    public static String lastName;
-    public static String position;
-    public static Date birthday;
-    public static String curp;
-    public static String email;
-    public static String password;
+    private static int idMember;
+    private static String name;
+    private static String lastName;
+    private static String phoneNumber;
+    private static String position;
+    private static Date birthday;
+    private static String curp;
+    private static String email;
+    private static String password;
 
     public Members() {
     }
@@ -23,9 +24,10 @@ public class Members {
         Members.idMember = idMember;
     }
 
-    public Members(String name, String lastName, String position, Date birthday, String curp, String email, String password) {
+    public Members(String name, String lastName, String phoneNumber, String position, Date birthday, String curp, String email, String password) {
         this.name = name;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.position = position;
         this.birthday = birthday;
         this.curp = curp;
@@ -45,6 +47,10 @@ public class Members {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getPosition() {
@@ -79,6 +85,10 @@ public class Members {
         this.lastName = lastName;
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
     public void setPosition(String position) {
         this.position = position;
     }

@@ -1,4 +1,4 @@
-package businesslogic;
+package sgpca.uv.mx.businesslogic;
 
 import sgpca.uv.mx.businesslogic.AcademicBodyDAO;
 import sgpca.uv.mx.domain.AcademicBody;
@@ -14,9 +14,9 @@ import org.junit.Assert;
  *
  * @author azul_
  */
-public class AcademicBodyDAOtest {
+public class AcademicBodyDAOTest {
     
-    public AcademicBodyDAOtest() {
+    public AcademicBodyDAOTest() {
     }
     
     @BeforeClass
@@ -39,7 +39,7 @@ public class AcademicBodyDAOtest {
      * Test of insert method, of class AcademicBodyDAO.
      */
     @Test
-    public void testMethodInsert() {
+    public void insertTest() {
         System.out.println("insert");
         AcademicBody academic = new AcademicBody("Acs25", "Faculatas de fisica", 4, Date.valueOf("2021-05-03"), "Licenciatura", "UV", 2, 5);
         AcademicBodyDAO academicInsert = new AcademicBodyDAO();
@@ -50,7 +50,7 @@ public class AcademicBodyDAOtest {
      * Test of select method, of class AcademicBodyDAO.
      */
     @Test
-    public void testMethodSelect() {
+    public void selectTest() {
         System.out.println("select");
         AcademicBodyDAO academicSelect = new AcademicBodyDAO();
         Assert.assertNotNull(academicSelect.select(1));
@@ -60,7 +60,7 @@ public class AcademicBodyDAOtest {
      * Test of update method, of class AcademicBodyDAO.
      */
     @Test
-    public void testMethodUpdate() {
+    public void updateTest() {
         System.out.println("update");
         AcademicBody academic = new AcademicBody("Acs125", "Facultad de estadistica", 2, Date.valueOf("2021-05-02"), "Licenciatura", "UV", 3);
         AcademicBodyDAO academicUpdate = new AcademicBodyDAO();

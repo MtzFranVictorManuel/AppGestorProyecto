@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sgpca.uv.mx.dataacces;
 
 import java.sql.Connection;
@@ -11,13 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author azul_
- */
+
 public class ConnectDB {
     private static final String JDBC_USER="root";
-    private static final String JDBC_DATABASE="pruebasgp";
     private static final String JDBC_PASSWORD="Q6spEd1=pHA";
     private static final String JDBC_URL = "jdbc:mysql://localhost/pruebasgp?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 

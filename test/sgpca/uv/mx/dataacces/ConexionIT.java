@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataacces;
+package sgpca.uv.mx.dataacces;
 
 import sgpca.uv.mx.dataacces.ConnectDB;
 import java.sql.Connection;
@@ -49,14 +49,14 @@ public class ConexionIT {
      * Test of getConexion method, of class ConnectDB.
      */
     @Test
-    public void testGetConexion() throws SQLException{
+    public void getConexionTest() throws SQLException{
         ConnectDB connect = new ConnectDB();
         Connection conectOn = connect.getConexion();
         Assert.assertNotNull(conectOn);
     }
     
     @Test
-    public void testCloseConexion() throws SQLException{
+    public void closeConexionTest() throws SQLException{
         ConnectDB connect = new ConnectDB();
         Connection conectOff = connect.getConexion();
         ConnectDB.close(conectOff);

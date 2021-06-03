@@ -26,7 +26,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ScreenHomeController implements Initializable {
@@ -78,14 +77,9 @@ public class ScreenHomeController implements Initializable {
         labelInstitucionalFaculty.setText(academicObject.getInstitucionalFaculty());
         labelName.setText(memberObject.getName());
         comboBox.getItems().addAll(workplanInfo.logWorkplanList(listWorkPlan));
-        labelPositionAcamedic.setText(": id: " + setDateComboBox());
     }    
 
-    @FXML
-    private void addWorkplan(ActionEvent event) {
-        
-        navigationScreen("gui/ScreenAddWorkplan.fxml");
-    }  
+    
 
     @FXML
     private void callWorkPlan(ActionEvent event) {
@@ -93,9 +87,20 @@ public class ScreenHomeController implements Initializable {
     }
     
     @FXML
+    private void actionEditPersonalInformation(ActionEvent event) {
+        navigationScreen("gui/ScreenEditPersonalInformation.fxml");
+    }
+    
+    @FXML
     private void logout(ActionEvent event) {
         navigationScreen("gui/ScreenLogin.fxml");
     }
+    
+    @FXML
+    private void addWorkplan(ActionEvent event) {
+        
+        navigationScreen("gui/ScreenAddWorkplan.fxml");
+    }  
 
     @FXML
     private void manageWorkplan(ActionEvent event) {
@@ -132,4 +137,6 @@ public class ScreenHomeController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 }

@@ -17,7 +17,7 @@
       <Label fx:id="labelPositionAcamedic" layoutX="163.0" layoutY="172.0" text="Label" />
       <Button fx:id="manageBodyWorkplan" layoutX="601.0" layoutY="168.0" mnemonicParsing="false" onAction="#manageWorkplan" prefHeight="25.0" prefWidth="187.0" text="manage body work plan" />
       <Button fx:id="addBodyWorkplan" layoutX="601.0" layoutY="132.0" mnemonicParsing="false" onAction="#addWorkplan" prefHeight="25.0" prefWidth="187.0" text="add body work plan" />
-      <Button layoutX="267.0" layoutY="168.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" text="Edit personal information" />
+      <Button layoutX="267.0" layoutY="168.0" mnemonicParsing="false" onAction="#actionEditPersonalInformation" prefHeight="25.0" prefWidth="187.0" text="Edit personal information" />
       <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" text="general curriculum" />
       <Button layoutX="184.0" layoutY="45.0" mnemonicParsing="false" text="Meetings" />
       <Button layoutX="310.0" layoutY="45.0" mnemonicParsing="false" text="Events" />

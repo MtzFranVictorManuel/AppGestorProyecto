@@ -89,6 +89,7 @@ public class WorkplanDAO implements IWorkplan{
         return workPlan;
     }
     
+    @Override
     public Workplan selectInfo(int idWorkplan){
         connect = ConnectDB.getConexion();
         Workplan workPlan = null;
@@ -229,6 +230,7 @@ public class WorkplanDAO implements IWorkplan{
         return workPlan;
     }
     
+    @Override
     public int queryWorkplanID (String workplanID){
         connect = ConnectDB.getConexion();
         int idWorkplan = 0;

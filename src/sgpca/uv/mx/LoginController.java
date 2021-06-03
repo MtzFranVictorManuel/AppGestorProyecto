@@ -31,8 +31,8 @@ public class LoginController implements Initializable {
     
     @FXML
     private void loginaButton(ActionEvent event){        
-        String emailID = "zs18019639@estudiantes.uv.mx";//textFieldEmailID.getText();
-        String passwordID = "556699";//textFieldPassword.getText();
+        String emailID = textFieldEmailID.getText();
+        String passwordID = textFieldPassword.getText();
             if(!emailID.isEmpty() && !passwordID.isEmpty()){
                 if(EmailValidation.isValid(emailID)){
                     memberInfo.select(emailID, passwordID);

@@ -1,4 +1,4 @@
-package businesslogic;
+package sgpca.uv.mx.businesslogic;
 
 import sgpca.uv.mx.businesslogic.ResumeDAO;
 import sgpca.uv.mx.domain.Resume;
@@ -13,9 +13,9 @@ import org.junit.Test;
  *
  * @author 
  */
-public class ResumeDAOtest {
+public class ResumeDAOTest {
     
-    public ResumeDAOtest() {
+    public ResumeDAOTest() {
     }
     
     @BeforeClass
@@ -38,7 +38,7 @@ public class ResumeDAOtest {
      * Test of insert method, of class ResumeDAO.
      */
     @Test
-    public void testInsert() {
+    public void insertTest() {
         System.out.println("insert");
         ResumeDAO resume = new ResumeDAO();
         Resume resumeMember = new Resume("Hola nuevo", "Es crear una prueba", "Y que esta sea ejecurada", "Hola", 1);
@@ -49,7 +49,7 @@ public class ResumeDAOtest {
      * Test of select method, of class ResumeDAO.
      */
     @Test
-    public void testSelect() {
+    public void selectTest() {
         System.out.println("select");
         ResumeDAO resume = new ResumeDAO();
         resume.select(1);
@@ -60,7 +60,7 @@ public class ResumeDAOtest {
      * Test of update method, of class ResumeDAO.
      */
     @Test
-    public void testUpdate() {
+    public void updateTest() {
         System.out.println("update");
         ResumeDAO resume = new ResumeDAO();
         Resume resumeMember = new Resume("lo cambie", "Es cambiar a nuevo", "Y ver si funciona", "", 1);

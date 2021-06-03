@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package businesslogic;
+package sgpca.uv.mx.businesslogic;
 
-import sgpca.uv.mx.businesslogic.ActionDAO;
-import sgpca.uv.mx.domain.Action;
+import sgpca.uv.mx.businesslogic.ActionObjectiveDAO;
+import sgpca.uv.mx.domain.ActionObjective;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -18,9 +18,9 @@ import org.junit.Test;
  *
  * @author azul_
  */
-public class ActionDAOtest {
+public class ActionDAOTest {
     
-    public ActionDAOtest() {
+    public ActionDAOTest() {
     }
     
     @BeforeClass
@@ -40,45 +40,46 @@ public class ActionDAOtest {
     }
 
     /**
-     * Test of insert method, of class ActionDAO.
+     * Test of insert method, of class ActionObjectiveDAO.
      */
     @Test
-    public void testMethodInsert() {
+    public void insertTest() {
         System.out.println("insert");
-        ActionDAO actionInsert = new ActionDAO();
-        Action action = new Action("Nueva accion", "Su descripcion");
+        ActionObjectiveDAO actionInsert = new ActionObjectiveDAO();
+        ActionObjective action = new ActionObjective("Nueva accion", "Su descripcion");
         Assert.assertNotNull(actionInsert.insert(action, 1));
     }
 
     /**
-     * Test of select method, of class ActionDAO.
+     * Test of select method, of class ActionObjectiveDAO.
      */
     @Test
-    public void testMethodSelect() {
+    public void selectTest() {
         System.out.println("select");
-        ActionDAO actionSelect = new ActionDAO();
+        ActionObjectiveDAO actionSelect = new ActionObjectiveDAO();
         Assert.assertNotNull(actionSelect.select(1));
     }
 
     /**
-     * Test of update method, of class ActionDAO.
+     * Test of update method, of class ActionObjectiveDAO.
      */
     @Test
-    public void testMethodUpdate() {
+    public void updateTest() {
         System.out.println("update");
-        ActionDAO actionUpdate = new ActionDAO();
-        Action action = new Action("Actualizado", "Actualizado");
+        ActionObjectiveDAO actionUpdate = new ActionObjectiveDAO();
+        ActionObjective action = new ActionObjective("Actualizado", "Actualizado");
         Assert.assertNotNull(actionUpdate.update(action, "Nueva accion", 1));
     }
 
     /**
-     * Test of delete method, of class ActionDAO.
+     * Test of delete method, of class ActionObjectiveDAO.
      */
     @Test
-    public void testMethodDelete() {
+    public void deleteTest() {
         System.out.println("delete");
-        ActionDAO actionDelete = new ActionDAO();
+        ActionObjectiveDAO actionDelete = new ActionObjectiveDAO();
         Assert.assertNotNull(actionDelete.delete("Actualizado", 1));
     }
+    
     
 }

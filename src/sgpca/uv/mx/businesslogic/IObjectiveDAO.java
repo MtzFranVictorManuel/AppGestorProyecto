@@ -5,6 +5,7 @@
  */
 package sgpca.uv.mx.businesslogic;
 
+import javafx.collections.ObservableList;
 import sgpca.uv.mx.domain.Objective;
 
 /**
@@ -19,4 +20,10 @@ public interface IObjectiveDAO {
     public int update(Objective objective, int idWorkplan, String title);
     
     public int delete(int idWorkplan, String title);
+    
+    public ObservableList<Objective> loadObjectivePending(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan);
+    
+    public ObservableList<Objective> loadObjectiveComplet(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan);
+    
+    public ObservableList<Objective> selectTableView(ObservableList<Objective> tableInfo, int idWorkplan);
 }
