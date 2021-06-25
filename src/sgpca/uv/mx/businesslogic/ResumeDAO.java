@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class ResumeDAO implements IResume{
     private Connection connectionTransmission;
     Connection connect = null;
@@ -25,7 +26,7 @@ public class ResumeDAO implements IResume{
     }
     
     @Override
-    public int insert(Resume resumeMember){
+    public int insert(Resume resumeMember, int idMember){
         connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
@@ -35,7 +36,7 @@ public class ResumeDAO implements IResume{
                 preStatement.setString(2, resumeMember.getMission());
                 preStatement.setString(3, resumeMember.getVision());
                 preStatement.setString(4, resumeMember.getGeneralObjetive());
-                preStatement.setInt(5, resumeMember.getFkMember());
+                preStatement.setInt(5, idMember);
                 rows = preStatement.executeUpdate();
             }
             catch(SQLException exception){
@@ -59,14 +60,14 @@ public class ResumeDAO implements IResume{
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
                 preStatement.setInt(1, idMember);
-                ResultSet rSet = preStatement.executeQuery();
-                if(rSet.next()){
+                ResultSet resultSet = preStatement.executeQuery();
+                if(resultSet.next()){
                     resume = new Resume();
-                    resume.setNameResume(rSet.getString("nombre"));
-                    resume.setMission(rSet.getString("mision"));
-                    resume.setVision(rSet.getString("vision"));
-                    resume.setGeneralObjetive(rSet.getString("objetivoGeneral"));
-                    ConnectDB.close(rSet);
+                    resume.setNameResume(resultSet.getString("nombre"));
+                    resume.setMission(resultSet.getString("mision"));
+                    resume.setVision(resultSet.getString("vision"));
+                    resume.setGeneralObjetive(resultSet.getString("objetivoGeneral"));
+                    ConnectDB.close(resultSet);
                     return resume;
                 }
             }

@@ -89,4 +89,5 @@ public class ScreenAddWorkplanController implements Initializable {
         datePickerStartDate.setValue(null);
         datePickerEndDate.setValue(null);
     }
+    
 }

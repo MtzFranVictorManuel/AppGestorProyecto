@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="770.0" prefWidth="761.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sgpca.uv.mx.ScreenGeneralCurriculumController">
+   <children>
+      <Label layoutX="117.0" layoutY="91.0" text="Area name:  " />
+      <Label layoutX="117.0" layoutY="127.0" text="Dependency institution:  " />
+      <Label layoutX="117.0" layoutY="164.0" text="Faculty of institution:  " />
+      <Label layoutX="116.0" layoutY="202.0" text="Degree of consolidation:  " />
+      <Label layoutX="116.0" layoutY="237.0" text="Key code:  " />
+      <Label layoutX="117.0" layoutY="270.0" text="Number of participants:  " />
+      <Label layoutX="117.0" layoutY="303.0" text="Number of collaborators:  " />
+      <Label layoutX="117.0" layoutY="339.0" text="Registration date:  " />
+      <Label layoutX="116.0" layoutY="377.0" text="General objective:  " />
+      <Label layoutX="112.0" layoutY="467.0" text="Mission:  " />
+      <Label layoutX="116.0" layoutY="563.0" text="Vision:  " />
+      <TextField fx:id="textFieldAreaName" layoutX="185.0" layoutY="87.0" prefHeight="25.0" prefWidth="336.0" />
+      <TextField fx:id="textFieldDependencyInstitution" layoutX="250.0" layoutY="123.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextField fx:id="textFieldFacultyInstitution" layoutX="235.0" layoutY="160.0" prefHeight="25.0" prefWidth="287.0" />
+      <TextField fx:id="textFieldDegreeConsolidation" layoutX="250.0" layoutY="198.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextField fx:id="textFieldKeyCode" layoutX="176.0" layoutY="233.0" prefHeight="25.0" prefWidth="347.0" />
+      <TextField fx:id="textFieldNumberParticipants" layoutX="253.0" layoutY="266.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextField fx:id="textFieldNumberCollaborators" layoutX="253.0" layoutY="299.0" prefHeight="25.0" prefWidth="271.0" />
+      <TextArea fx:id="textAreaGeneralObjective" layoutX="217.0" layoutY="376.0" prefHeight="81.0" prefWidth="451.0" />
+      <TextArea fx:id="textAreaMission" layoutX="162.0" layoutY="463.0" prefHeight="88.0" prefWidth="508.0" />
+      <TextArea fx:id="textAreaVision" layoutX="162.0" layoutY="563.0" prefHeight="81.0" prefWidth="508.0" />
+      <Button fx:id="buttonEditInformation" layoutX="497.0" layoutY="38.0" mnemonicParsing="false" onAction="#editInformation" text="Edit information" />
+      <Button fx:id="buttonMembersList" layoutX="634.0" layoutY="38.0" mnemonicParsing="false" onAction="#viewMembersList" text="Members list" />
+      <Button fx:id="buttonSaveChanges" layoutX="625.0" layoutY="698.0" mnemonicParsing="false" onAction="#saveChanges" text="Save Changes" />
+      <Button fx:id="buttonExit" layoutX="86.0" layoutY="698.0" mnemonicParsing="false" onAction="#exitToHome" text="Exit" />
+      <DatePicker fx:id="datePickerRegistrationDate" layoutX="218.0" layoutY="335.0" prefHeight="25.0" prefWidth="183.0" />
+   </children>
+</AnchorPane>

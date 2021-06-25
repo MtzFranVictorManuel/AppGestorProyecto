@@ -38,7 +38,7 @@ public class AlertGuis {
         alertEmptyInfo.showAndWait(); 
     }
     
-    public void alertWarning(String title, String headerText, String contentText){
+    public static void alertWarning(String title, String headerText, String contentText){
         Alert alertEmptyInfo = new Alert(Alert.AlertType.WARNING);
         alertEmptyInfo.setTitle(title);
         alertEmptyInfo.setHeaderText(headerText);

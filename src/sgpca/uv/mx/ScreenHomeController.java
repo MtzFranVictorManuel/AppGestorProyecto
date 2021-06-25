@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ScreenHomeController implements Initializable {
@@ -33,6 +34,7 @@ public class ScreenHomeController implements Initializable {
     WorkplanDAO workplanInfo = new WorkplanDAO();
     AcademicBodyDAO academicInfo = new AcademicBodyDAO();
     ObjectiveDAO objectiveInfo = new ObjectiveDAO();
+    Objective objectiveObject = new Objective();
     Members memberObject = new Members();  
     AcademicBody academicObject = new AcademicBody();
     Workplan workplanObject = new Workplan();
@@ -117,7 +119,7 @@ public class ScreenHomeController implements Initializable {
         tableViewCompleted.setItems(objectiveInfo.loadObjectiveComplet(objectiveStateComplet, "completado", setDateComboBox()));
         tableViewPending.setItems(objectiveInfo.loadObjectivePending(objectiveState, "pendiente", setDateComboBox()));
         this.columnCompletedObjective.setCellValueFactory(new PropertyValueFactory("title"));
-        labelPositionAcamedic.setText(": id: " + setDateComboBox());
+        
     }
     
     public int setDateComboBox(){
@@ -136,6 +138,21 @@ public class ScreenHomeController implements Initializable {
         }catch(IOException ex){
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void displayInformation(MouseEvent event) {
+        Objective objectiveContainer = tableViewPending.getSelectionModel().getSelectedItem();
+        int id = Objective.getIdObjective();
+        String title= objectiveContainer.getTitle();
+        System.out.println(" " + id + title);
+        navigationScreen("gui/ScreenEditObjective.fxml");
+        
+    }
+
+    @FXML
+    private void generalCurriculum(ActionEvent event) {
+        navigationScreen("gui/ScreenGeneralCurriculum.fxml");
     }
 
     

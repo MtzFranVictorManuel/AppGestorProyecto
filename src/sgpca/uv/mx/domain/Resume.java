@@ -2,10 +2,10 @@ package sgpca.uv.mx.domain;
 
 
 public class Resume {
-    private String nameResume;
-    private String mission;
-    private String vision;
-    private String generalObjetive;
+    private static String nameResume;
+    private static String mission;
+    private static String vision;
+    private static String generalObjetive;
     private int fkMember;
     
 

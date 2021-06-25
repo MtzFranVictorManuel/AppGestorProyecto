@@ -7,7 +7,7 @@ import sgpca.uv.mx.domain.Resume;
  * @author azul_
  */
 public interface IResume {
-    public int insert(Resume resumeMember);
+    public int insert(Resume resumeMember, int idMember);
     
     public Resume select(int idMember);
     

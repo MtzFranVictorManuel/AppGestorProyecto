@@ -14,8 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
@@ -28,26 +31,19 @@ public class LoginController implements Initializable {
     private TextField textFieldEmailID;
     @FXML
     private PasswordField textFieldPassword;
+    @FXML
+    private Button initionButton;
     
     @FXML
     private void loginaButton(ActionEvent event){        
-        String emailID = textFieldEmailID.getText();
-        String passwordID = textFieldPassword.getText();
-            if(!emailID.isEmpty() && !passwordID.isEmpty()){
-                if(EmailValidation.isValid(emailID)){
-                    memberInfo.select(emailID, passwordID);
-                    if(memberObject.getEmail() == null && memberObject.getPassword() == null){
-                        alert.alertInformation(null, "Wrong email", "The email that was entered "+ emailID + " is not valid, try a valid email or request one to register.");
-                        return;
-                    }
-                    else if(memberObject.getEmail().equals(emailID) && memberObject.getPassword().equals(passwordID)){    
-                        navigationScreen("gui/ScreenHome.fxml");
-                    }
-                }
-                else{
-                    alert.alertError(null, null, "The email entered does not belong to the domains allowed with the system.");
-                }
-            }
+        loginMethod();
+    }
+    
+    @FXML
+    private void loginWithEnter(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            loginMethod();
+        }
     }
     
     @Override
@@ -66,4 +62,24 @@ public class LoginController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void loginMethod(){
+        String emailID = textFieldEmailID.getText();
+        String passwordID = textFieldPassword.getText();
+        if(!emailID.isEmpty() && !passwordID.isEmpty()){
+            if(EmailValidation.isValid(emailID)){
+                memberInfo.select(emailID, passwordID);
+                if(memberObject.getEmail() == null && memberObject.getPassword() == null){
+                    alert.alertInformation(null, "Wrong email", "The email that was entered "+ emailID + " is not valid, try a valid email or request one to register.");
+                    return;
+                }
+                else if(memberObject.getEmail().equals(emailID) && memberObject.getPassword().equals(passwordID)){    
+                    navigationScreen("gui/ScreenHome.fxml");
+                }
+            }
+            else{
+                alert.alertError(null, null, "The email entered does not belong to the domains allowed with the system.");
+            }
+        }
+    }    
 }

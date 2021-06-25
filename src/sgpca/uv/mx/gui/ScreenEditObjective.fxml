@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sgpca.uv.mx.ScreenEditObjectiveController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.uv.mx.ScreenEditObjectiveController">
    <children>
       <Label fx:id="labelName" layoutX="38.0" layoutY="51.0" text="Label" />
+      <Button layoutX="40.0" layoutY="348.0" mnemonicParsing="false" onAction="#exitToHome" text="Exit" />
    </children>
 </AnchorPane>

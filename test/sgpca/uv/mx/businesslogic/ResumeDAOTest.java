@@ -42,7 +42,7 @@ public class ResumeDAOTest {
         System.out.println("insert");
         ResumeDAO resume = new ResumeDAO();
         Resume resumeMember = new Resume("Hola nuevo", "Es crear una prueba", "Y que esta sea ejecurada", "Hola", 1);
-        Assert.assertNotNull(resume.insert(resumeMember));
+        Assert.assertNotNull(resume.insert(resumeMember, 1));
     }
 
     /**
