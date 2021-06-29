@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="AppGestorProyecto.jar" size="66469" download="eager" />
+    <jar href="AppGestorProyecto.jar" size="68730" download="eager" />
+    <jar href="lib\commons-codec-1.6-javadoc.jar" size="357085" download="eager" />
+    <jar href="lib\commons-codec-1.6-sources.jar" size="243982" download="eager" />
+    <jar href="lib\commons-codec-1.6-tests.jar" size="214961" download="eager" />
+    <jar href="lib\commons-codec-1.6.jar" size="232771" download="eager" />
     <jar href="lib\hamcrest-all-1.3.jar" size="306578" download="eager" />
     <jar href="lib\junit-4.12.jar" size="316791" download="eager" />
     <jar href="lib\mockito-core-3.9.0.jar" size="666328" download="eager" />

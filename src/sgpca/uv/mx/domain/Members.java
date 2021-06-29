@@ -8,13 +8,13 @@ import java.sql.Date;
  */
 public class Members {
     private static int idMember;
-    private static String name;
-    private static String lastName;
-    private static String phoneNumber;
-    private static String position;
-    private static Date birthday;
-    private static String curp;
-    private static String email;
+    private String name;
+    private String lastName;
+    private String phoneNumber;
+    private String position;
+    private Date birthday;
+    private String curp;
+    private String email;
     private static String password;
 
     public Members() {

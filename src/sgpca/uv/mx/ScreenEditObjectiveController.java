@@ -5,6 +5,7 @@
  */
 package sgpca.uv.mx;
 
+import sgpca.uv.mx.utilities.AlertGuis;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

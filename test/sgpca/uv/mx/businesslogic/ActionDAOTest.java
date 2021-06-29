@@ -80,6 +80,4 @@ public class ActionDAOTest {
         ActionObjectiveDAO actionDelete = new ActionObjectiveDAO();
         Assert.assertNotNull(actionDelete.delete("Actualizado", 1));
     }
-    
-    
 }

@@ -1,5 +1,5 @@
 package sgpca.uv.mx.businesslogic;
-import sgpca.uv.mx.AlertGuis;
+import sgpca.uv.mx.utilities.AlertGuis;
 import sgpca.uv.mx.dataacces.ConnectDB;
 import sgpca.uv.mx.domain.AcademicBody;
 import sgpca.uv.mx.domain.Workplan;

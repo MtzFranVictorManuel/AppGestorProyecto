@@ -1,4 +1,4 @@
-package sgpca.uv.mx;
+package sgpca.uv.mx.utilities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;

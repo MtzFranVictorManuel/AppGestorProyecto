@@ -1,5 +1,6 @@
 package sgpca.uv.mx;
 
+import sgpca.uv.mx.utilities.AlertGuis;
 import sgpca.uv.mx.businesslogic.WorkplanDAO;
 import sgpca.uv.mx.domain.AcademicBody;
 import sgpca.uv.mx.domain.Workplan;

@@ -5,6 +5,7 @@
  */
 package sgpca.uv.mx;
 
+import sgpca.uv.mx.utilities.AlertGuis;
 import sgpca.uv.mx.domain.Workplan;
 import java.net.URL;
 import java.util.ResourceBundle;

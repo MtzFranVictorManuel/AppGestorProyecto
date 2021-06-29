@@ -1,4 +1,4 @@
-package sgpca.uv.mx;
+package sgpca.uv.mx.utilities;
 
 import java.util.Optional;
 import javafx.scene.control.Alert;

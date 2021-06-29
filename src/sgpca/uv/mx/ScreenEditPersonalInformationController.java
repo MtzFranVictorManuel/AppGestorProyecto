@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sgpca.uv.mx.businesslogic.MembersDAO;
 import sgpca.uv.mx.domain.Members;
-import sgpca.uv.mx.AlertGuis;
+import sgpca.uv.mx.utilities.AlertGuis;
 
 
 public class ScreenEditPersonalInformationController implements Initializable {
@@ -30,50 +30,67 @@ public class ScreenEditPersonalInformationController implements Initializable {
 
     @FXML
     private TextField textFieldName;
+    
     @FXML
     private TextField textFieldSurname;
+    
     @FXML
     private TextField textFieldAcademicBodyPosition;
+    
     @FXML
     private TextField textFieldEmail;
+    
     @FXML
     private TextField textFieldPhoneNumber;
+    
     @FXML
     private TextField textFieldCurp;
+    
     @FXML
     private DatePicker datePickerDateBirth;
+    
     @FXML
     private Button buttonExit;
+    
     @FXML
     private Button buttonSaveChanges;
+    
     @FXML
     private Button buttonChangePassword;
+    
     @FXML
     private Label labelOldPassword;
+    
     @FXML
     private Label labelNewPassword;
+    
     @FXML
     private Label labelConfirmPassword;
+    
     @FXML
     private PasswordField textFieldOldPassword;
+    
     @FXML
     private PasswordField textFieldNewPassword;
+    
     @FXML
     private PasswordField textFieldConfirmPassword;
+    
     @FXML
     private Button buttonCancelPasswordChange;
-
-   
+    
+    @FXML
+    private Button buttonEditInformation;
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        memberInfo.select(memberObject.getIdMember());
-        textFieldName.setText(memberObject.getName());
-        textFieldSurname.setText(memberObject.getLastName());
-        textFieldAcademicBodyPosition.setText(memberObject.getPosition());
-        datePickerDateBirth.setValue(LOCAL_DATE(memberObject.getBirthday().toString()));
-        textFieldCurp.setText(memberObject.getCurp());
-        textFieldEmail.setText(memberObject.getEmail());
-        textFieldPhoneNumber.setText(memberObject.getPhoneNumber());
+        textFieldName.setText(memberInfo.select(memberObject.getIdMember()).getName());
+        textFieldSurname.setText(memberInfo.select(memberObject.getIdMember()).getLastName());
+        textFieldAcademicBodyPosition.setText(memberInfo.select(memberObject.getIdMember()).getPosition());
+        datePickerDateBirth.setValue(LOCAL_DATE(memberInfo.select(memberObject.getIdMember()).getBirthday().toString()));
+        textFieldCurp.setText(memberInfo.select(memberObject.getIdMember()).getCurp());
+        textFieldEmail.setText(memberInfo.select(memberObject.getIdMember()).getEmail());
+        textFieldPhoneNumber.setText(memberInfo.select(memberObject.getIdMember()).getPhoneNumber());
         buttonCancelPasswordChange.setVisible(false);
         buttonSaveChanges.setVisible(false);
         valuesNotEditable(true);
@@ -87,21 +104,37 @@ public class ScreenEditPersonalInformationController implements Initializable {
 
     @FXML
     private void actionEditInformaion(ActionEvent event) {
-        buttonSaveChanges.setVisible(true);
-        valuesNotEditable(false);
+        if(buttonEditInformation.getText().equals("Edit information")){
+            buttonEditInformation.setText("Cancel edit");
+            buttonSaveChanges.setVisible(true);
+            valuesNotEditable(false);
+        } else if(buttonEditInformation.getText().equals("Cancel edit")){
+            stateButtons("Edit information", "Save changes", true);
+        }
+        
     }
     
     @FXML
     private void saveChanges(ActionEvent event) {
         if(buttonSaveChanges.getText().equals("Save changes")){
             System.out.println("Solo guardo esto y no contrasena");
+            if(alertGui.alertConfirmation("", "", "") == true){
+                stateButtons("Edit information", "Save changes", true);
+            }
         } else if(buttonSaveChanges.getText().equals("Save password")){
             System.out.println("Solo guardo la contrasena");
+            if(alertGui.alertConfirmation("Password update", "", "You are about"
+                    + " to change your password, press the accept button to apply the changes.") == true){
+                alertGui.alertInformation("Changes applied", "", "The changes were applied successfully.");
+                stateButtons("Edit information", "Save changes", true);
+            }
+            
         }
     }
 
     @FXML
     private void changePassword(ActionEvent event) {
+        buttonSaveChanges.setText("Save password");
         buttonChangePassword.setVisible(false);
         buttonCancelPasswordChange.setVisible(true);
         passwordValuesNotVisible(true);
@@ -112,6 +145,7 @@ public class ScreenEditPersonalInformationController implements Initializable {
     private void cancelPasswordChanges(ActionEvent event) {
         if(alertGui.alertConfirmation("Cancel password edit", "Cancel password", 
                 "The edition of the user password is being canceled, do you want to continue?") == true){
+            buttonSaveChanges.setText("Save changes");
             buttonChangePassword.setVisible(true);
             buttonCancelPasswordChange.setVisible(false);
             passwordValuesNotVisible(false);
@@ -156,7 +190,13 @@ public class ScreenEditPersonalInformationController implements Initializable {
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return localDate;
     }
-
     
-    
+    private void stateButtons(String textButtonEditInformation, String textButtonSaveChanges, boolean value){
+        buttonSaveChanges.setText(textButtonSaveChanges); 
+        buttonEditInformation.setText(textButtonEditInformation); 
+        buttonCancelPasswordChange.setVisible(!value); 
+        buttonSaveChanges.setVisible(!value); 
+        valuesNotEditable(value); 
+        passwordValuesNotVisible(!value); 
+    }
 }

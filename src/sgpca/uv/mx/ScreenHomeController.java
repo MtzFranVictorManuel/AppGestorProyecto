@@ -1,5 +1,6 @@
 package sgpca.uv.mx;
 
+import sgpca.uv.mx.utilities.AlertGuis;
 import sgpca.uv.mx.businesslogic.AcademicBodyDAO;
 import sgpca.uv.mx.businesslogic.MembersDAO;
 import sgpca.uv.mx.businesslogic.ObjectiveDAO;
@@ -88,10 +89,8 @@ public class ScreenHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {       
         listWorkPlan = FXCollections.observableArrayList();
-        memberInfo.select(memberObject.getIdMember());
-        academicInfo.select(memberObject.getIdMember());
-        labelInstitucionalFaculty.setText(academicObject.getInstitucionalFaculty());
-        labelName.setText(memberObject.getName());
+        labelInstitucionalFaculty.setText(academicInfo.select(memberObject.getIdMember()).getInstitucionalFaculty());
+        labelName.setText(memberInfo.select(memberObject.getIdMember()).getName());
         comboBoxSelectWorkplanKey.getItems().addAll(workplanInfo.logWorkplanList(listWorkPlan));
     }    
 
