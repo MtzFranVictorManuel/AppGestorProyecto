@@ -149,7 +149,7 @@ public class ScreenHomeController implements Initializable {
             stage.setResizable(false);
             stage.show();
         }catch(IOException ex){
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ScreenHomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

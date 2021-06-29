@@ -62,8 +62,8 @@ public class ObjectiveDAOTest {
     public void updateTest() {
         System.out.println("update");
         ObjectiveDAO objectiveUpdate = new ObjectiveDAO();
-        //Objective objective = new Objective("Fue modificado", "Fue modificado", "Fue modificado", "Fue modificado", "Fue modificado");
-        //Assert.assertNotNull(objectiveUpdate.update(objective, 1, "Presentar Ia"));
+        Objective objective = new Objective("unesco", "el implentar la limpieza", "", "Es crear una aplicacion que nos permita limpiar", "Es un pequeño proyecto que pide que limpies", "Pendiente");
+        Assert.assertNotNull(objectiveUpdate.update(objective, 2, "unesco"));
     }
 
     /**

@@ -34,6 +34,7 @@ public class ScreenAddObjectiveController implements Initializable {
     ObjectiveDAO objectiveInfo = new ObjectiveDAO();
     Objective objectiveObject = new Objective();
     ActionObjective actionObjectiveObject = new ActionObjective();
+    AlertGuis alertGuis = new AlertGuis();
  
 
     @FXML
@@ -75,7 +76,6 @@ public class ScreenAddObjectiveController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         buttonAddAction.setVisible(false);
         buttonDeleteAction.setVisible(false);
-        showTable();
     }    
 
     @FXML
@@ -84,17 +84,21 @@ public class ScreenAddObjectiveController implements Initializable {
         String strategy = textFieldObjectiveStrategy.getText();
         String goal = textFieldObjectiveGoal.getText();
         String description = textFieldObjectiveDescription.getText();
-        objectiveObject.setTitle(title);
-        objectiveObject.setStrategy(strategy);
-        objectiveObject.setResult(null);
-        objectiveObject.setGoal(goal);
-        objectiveObject.setDescription(description);
-        objectiveObject.setTargetState("Pendiente");
-        objectiveInfo.insert(objectiveObject, Workplan.getIdWorkplan());
-        buttonAddObjective.setVisible(false);
-        buttonAddAction.setVisible(true);
-        buttonDeleteAction.setVisible(true);
-        valuesNotEditable();
+        if(title.equals(null) || title.equals("")){
+            alertGuis.alertInformation("Requested data not entered", "Verify that the field marked with (*) has some data entered.", "");
+        } else{
+            objectiveObject.setTitle(title);
+            objectiveObject.setStrategy(strategy);
+            objectiveObject.setResult(null);
+            objectiveObject.setGoal(goal);
+            objectiveObject.setDescription(description);
+            objectiveObject.setTargetState("Pendiente");
+            objectiveInfo.insert(objectiveObject, Workplan.getIdWorkplan());
+            buttonAddObjective.setVisible(false);
+            buttonAddAction.setVisible(true);
+            buttonDeleteAction.setVisible(true);
+            valuesNotEditable();
+        }
     }
 
     @FXML
@@ -109,12 +113,16 @@ public class ScreenAddObjectiveController implements Initializable {
         String decription = textFieldActionDescription.getText();
         String result = textFieldActionResult.getText();
         Objective.setIdObjective(objectiveInfo.selectIdObject(textFieldObjectiveTitle.getText(), Workplan.getIdWorkplan()));
-        actionObjectiveObject.setTitle(title);
-        actionObjectiveObject.setDescription(decription);
-        actionObjectiveObject.setResult(result);
-        actionInfo.insert(actionObjectiveObject, Objective.getIdObjective());
-        showTable();
-        clearTextFieldsOfActionObjective();
+        if(title.equals(null) || title.equals("")){
+            alertGuis.alertInformation("Requested data not entered", "Verify that the field marked with (*) has some data entered.", "");
+        } else{
+            actionObjectiveObject.setTitle(title);
+            actionObjectiveObject.setDescription(decription);
+            actionObjectiveObject.setResult(result);
+            actionInfo.insert(actionObjectiveObject, Objective.getIdObjective());
+            showTable();
+            clearTextFieldsOfActionObjective();
+        }
     }
 
     @FXML
@@ -153,8 +161,12 @@ public class ScreenAddObjectiveController implements Initializable {
 
     @FXML
     private void deleteActionSelect(MouseEvent event) {
-        ActionObjective actionSelectoToDelete = tableViewAction.getSelectionModel().getSelectedItem();
-        int idActionObjective = actionSelectoToDelete.getIdAction();
-        actionObjectiveObject.setIdStaticAction(idActionObjective);
+        try{
+            ActionObjective actionSelectoToDelete = tableViewAction.getSelectionModel().getSelectedItem();
+            int idActionObjective = actionSelectoToDelete.getIdAction();
+            actionObjectiveObject.setIdStaticAction(idActionObjective);
+        }catch(RuntimeException exception){
+            alertGuis.alertError("Selection not confirmed ", "No selected action found.", "");
+        }
     }
 }

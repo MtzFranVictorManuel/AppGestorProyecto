@@ -22,7 +22,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  idObjetivo = ?;";
     private static final String SQL_SELECTOBJECTIVE = "SELECT * FROM tbl_objetivo WHERE fkPlanTrabajo = ?;";
     private static final String SQL_SELECTIDOBJETIVE = "SELECT idObjetivo FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
-    private static final String SQL_UPDATE = "UPDATE tbl_objetivo SET titulo = ?, estrategia = ?, resultado = ?, meta = ?, descripcion = ? WHERE titulo = ? AND fkPlanTrabajo  = ?;";
+    private static final String SQL_UPDATE = "UPDATE tbl_objetivo SET titulo = ?, estrategia = ?, resultado = ?, meta = ?, descripcion = ?, estadoObjetivo = ? WHERE titulo = ? AND idObjetivo = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
     private static final String SQL_SELECTESTATUSTARGET = "SELECT * FROM tbl_objetivo WHERE estadoObjetivo = ? AND fkPlanTrabajo = ?;";
 
@@ -126,7 +126,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     }
     
     @Override
-    public int update(Objective objective, int idWorkplan, String title){
+    public int update(Objective objective, int idObjective, String title){
         connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
@@ -137,8 +137,10 @@ public class ObjectiveDAO implements IObjectiveDAO{
                 preStatement.setString(3, objective.getResult());
                 preStatement.setString(4, objective.getGoal());
                 preStatement.setString(5, objective.getDescription());
-                preStatement.setString(6, title);
-                preStatement.setInt(7, idWorkplan);
+                preStatement.setString(6, objective.getTargetState());
+                preStatement.setString(7, title);
+                preStatement.setInt(8, idObjective);
+                rows = preStatement.executeUpdate();
             }
             catch (SQLException exception) {
                 Logger.getLogger(ObjectiveDAO.class.getName()).log(Level.SEVERE, null, exception);
