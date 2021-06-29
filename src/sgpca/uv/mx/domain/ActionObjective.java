@@ -5,6 +5,7 @@ package sgpca.uv.mx.domain;
  * @author azul_
  */
 public class ActionObjective {
+    private int idStaticAction;
     private int idAction;
     private String title;
     private String description;
@@ -31,6 +32,10 @@ public class ActionObjective {
         this.idObjective = idObjective;
     }
 
+    public int getIdStaticAction() {
+        return idStaticAction;
+    }
+    
     public int getIdAction() {
         return idAction;
     }
@@ -51,6 +56,10 @@ public class ActionObjective {
         return idObjective;
     }
 
+    public void setIdStaticAction(int idStaticAction) {
+        this.idStaticAction = idStaticAction;
+    }
+
     public void setIdAction(int idAction) {
         this.idAction = idAction;
     }
@@ -69,7 +78,5 @@ public class ActionObjective {
 
     public void setIdObjective(int idObjective) {
         this.idObjective = idObjective;
-    }
-    
-    
+    }   
 }

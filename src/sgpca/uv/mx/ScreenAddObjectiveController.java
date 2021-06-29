@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sgpca.uv.mx.businesslogic.ActionObjectiveDAO;
@@ -98,6 +99,8 @@ public class ScreenAddObjectiveController implements Initializable {
 
     @FXML
     private void actionDeleteAction(ActionEvent event) {
+        actionInfo.delete(actionObjectiveObject.getIdStaticAction());
+        showTable();
     }
 
     @FXML
@@ -111,6 +114,7 @@ public class ScreenAddObjectiveController implements Initializable {
         actionObjectiveObject.setResult(result);
         actionInfo.insert(actionObjectiveObject, Objective.getIdObjective());
         showTable();
+        clearTextFieldsOfActionObjective();
     }
 
     @FXML
@@ -139,5 +143,18 @@ public class ScreenAddObjectiveController implements Initializable {
         this.tableColumnActionDescription.setCellValueFactory(new PropertyValueFactory("description"));
         this.tableColumnActionResult.setCellValueFactory(new PropertyValueFactory("result"));
         tableViewAction.setItems(actionInfo.loadList(observableTable, Objective.getIdObjective()));
+    }
+    
+    private void clearTextFieldsOfActionObjective(){
+        textFieldActionTitle.setText("");
+        textFieldActionDescription.setText("");
+        textFieldActionResult.setText("");
+    }
+
+    @FXML
+    private void deleteActionSelect(MouseEvent event) {
+        ActionObjective actionSelectoToDelete = tableViewAction.getSelectionModel().getSelectedItem();
+        int idActionObjective = actionSelectoToDelete.getIdAction();
+        actionObjectiveObject.setIdStaticAction(idActionObjective);
     }
 }

@@ -64,8 +64,8 @@ public class LoginController implements Initializable {
     }
 
     private void loginMethod(){
-        String emailID = textFieldEmailID.getText();
-        String passwordID = textFieldPassword.getText();
+        String emailID = "zs18019639@estudiantes.uv.mx";//textFieldEmailID.getText();
+        String passwordID = "556699";//textFieldPassword.getText();
         if(!emailID.isEmpty() && !passwordID.isEmpty()){
             if(EmailValidation.isValid(emailID)){
                 memberInfo.select(emailID, passwordID);

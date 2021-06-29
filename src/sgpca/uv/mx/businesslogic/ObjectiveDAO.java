@@ -19,11 +19,11 @@ public class ObjectiveDAO implements IObjectiveDAO{
     Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_objetivo (titulo, estrategia, resultado, meta, descripcion, estadoObjetivo, fkPlanTrabajo) VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  fkPlanTrabajo = ?;";
+    private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  idObjetivo = ?;";
     private static final String SQL_SELECTIDOBJETIVE = "SELECT idObjetivo FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_objetivo SET titulo = ?, estrategia = ?, resultado = ?, meta = ?, descripcion = ? WHERE titulo = ? AND fkPlanTrabajo  = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
-    private static final String SQL_SELECTPENDING = "SELECT * FROM tbl_objetivo WHERE estadoObjetivo = ? AND fkPlanTrabajo = ?;";
+    private static final String SQL_SELECTESTATUSTARGET = "SELECT * FROM tbl_objetivo WHERE estadoObjetivo = ? AND fkPlanTrabajo = ?;";
 
 
     public ObjectiveDAO() {
@@ -64,17 +64,16 @@ public class ObjectiveDAO implements IObjectiveDAO{
     }
     
     @Override
-    public Objective select(int idWorkplan){
+    public Objective select(int idObjective){
         connect = ConnectDB.getConexion();
         Objective objective = null;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_SELECT);
-                preStatement.setInt(1, idWorkplan);
+                preStatement.setInt(1, idObjective);
                 ResultSet resultSet = preStatement.executeQuery();
                 if(resultSet.next()){
                     objective = new Objective();
-                    objective.setIdObjective(resultSet.getInt("idObjetivo"));
                     objective.setTitle(resultSet.getString("titulo"));
                     objective.setStrategy(resultSet.getString("estrategia"));
                     objective.setResult(resultSet.getString("resultado"));
@@ -180,17 +179,23 @@ public class ObjectiveDAO implements IObjectiveDAO{
     @Override
     public ObservableList<Objective> loadObjectivePending(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
         connect = ConnectDB.getConexion();
-        Objective objectiveObject = null;
+        Objective objective = null;
         if(connect != null){
             try{
-                preStatement = connect.prepareStatement(SQL_SELECTPENDING);
+                preStatement = connect.prepareStatement(SQL_SELECTESTATUSTARGET);
                 preStatement.setString(1, objectStatus);
                 preStatement.setInt(2, idWorkplan);
-                ResultSet rSet = preStatement.executeQuery();
-                while(rSet.next()){
-                    objectiveObject = new Objective();
-                    objectiveObject.setTitle(rSet.getString("titulo"));
-                    objectivePending.add(objectiveObject);
+                ResultSet resultSet = preStatement.executeQuery();
+                while(resultSet.next()){
+                    objective = new Objective();
+                    objective.setIdNoStaticObjective(resultSet.getInt("idObjetivo"));
+                    objective.setTitle(resultSet.getString("titulo"));
+                    objective.setStrategy(resultSet.getString("estrategia"));
+                    objective.setResult(resultSet.getString("resultado"));
+                    objective.setGoal(resultSet.getString("meta"));
+                    objective.setDescription(resultSet.getString("descripcion"));
+                    objective.setTargetState(resultSet.getString("estadoObjetivo"));
+                    objectivePending.add(objective);
                 }
                 return objectivePending;
             }
@@ -210,19 +215,25 @@ public class ObjectiveDAO implements IObjectiveDAO{
     @Override
      public ObservableList<Objective> loadObjectiveComplet(ObservableList<Objective> objectivePending, String objectStatus, int idWorkplan){
         connect = ConnectDB.getConexion();
-        Objective objectiveObject = null;
+        Objective objective = null;
         if(connect != null){
             try{
-                preStatement = connect.prepareStatement(SQL_SELECTPENDING);
+                preStatement = connect.prepareStatement(SQL_SELECTESTATUSTARGET);
                 preStatement.setString(1, objectStatus);
                 preStatement.setInt(2, idWorkplan);
-                ResultSet rSet = preStatement.executeQuery();
-                while(rSet.next()){
-                    objectiveObject = new Objective();
-                    objectiveObject.setTitle(rSet.getString("titulo"));
-                    objectivePending.add(objectiveObject);
+                ResultSet resultSet = preStatement.executeQuery();
+                while(resultSet.next()){
+                    objective = new Objective();
+                    objective.setIdNoStaticObjective(resultSet.getInt("idObjetivo"));
+                    objective.setTitle(resultSet.getString("titulo"));
+                    objective.setStrategy(resultSet.getString("estrategia"));
+                    objective.setResult(resultSet.getString("resultado"));
+                    objective.setGoal(resultSet.getString("meta"));
+                    objective.setDescription(resultSet.getString("descripcion"));
+                    objective.setTargetState(resultSet.getString("estadoObjetivo"));
+                    objectivePending.add(objective);
                 }
-                ConnectDB.close(rSet);
+                ConnectDB.close(resultSet);
                 return objectivePending;
             }
             catch (SQLException exception) {

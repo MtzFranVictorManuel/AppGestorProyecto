@@ -23,17 +23,19 @@
       <Button layoutX="310.0" layoutY="45.0" mnemonicParsing="false" text="Events" />
       <Button layoutX="417.0" layoutY="45.0" mnemonicParsing="false" text="Production" />
       <Button layoutX="543.0" layoutY="45.0" mnemonicParsing="false" text="Projects" />
-      <TableView fx:id="tableViewPending" layoutX="70.0" layoutY="233.0" onMouseClicked="#displayInformation" prefHeight="246.0" prefWidth="361.0">
+      <TableView fx:id="tableViewPending" layoutX="70.0" layoutY="233.0" onMouseClicked="#displayInformationPending" prefHeight="246.0" prefWidth="344.0">
         <columns>
-          <TableColumn fx:id="columnPendingObjective" prefWidth="359.0" text="Pending objectives" />
+            <TableColumn fx:id="columnIdPendingObjectives" prefWidth="75.0" text="IdObjectivePending" visible="false" />
+          <TableColumn fx:id="columnPendingObjective" prefWidth="359.0" resizable="false" text="Pending objectives" />
         </columns>
       </TableView>
       <Button fx:id="idLogout" layoutX="28.0" layoutY="529.0" mnemonicParsing="false" onAction="#logout" text="logout" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="771.0" AnchorPane.topAnchor="529.0" />
-      <TableView fx:id="tableViewCompleted" layoutX="413.0" layoutY="233.0" prefHeight="246.0" prefWidth="359.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="233.0">
+      <TableView fx:id="tableViewCompleted" layoutX="413.0" layoutY="233.0" onMouseClicked="#displayInformationCompleted" prefHeight="246.0" prefWidth="359.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="233.0">
         <columns>
+            <TableColumn fx:id="columnIdCompletedObjective" prefWidth="75.0" text="idObjectiveCompleted" visible="false" />
           <TableColumn fx:id="columnCompletedObjective" prefWidth="358.0" resizable="false" text="Objectives completed" />
         </columns>
       </TableView>
-      <ComboBox fx:id="comboBox" layoutX="601.0" layoutY="89.0" onAction="#callWorkPlan" prefHeight="25.0" prefWidth="187.0" promptText="Select obtion" />
+      <ComboBox fx:id="comboBoxSelectWorkplanKey" layoutX="601.0" layoutY="89.0" onAction="#callWorkPlan" prefHeight="25.0" prefWidth="187.0" promptText="Please select an option" />
    </children>
 </AnchorPane>

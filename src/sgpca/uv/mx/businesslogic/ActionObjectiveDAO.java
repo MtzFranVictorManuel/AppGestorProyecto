@@ -14,14 +14,14 @@ import javafx.collections.ObservableList;
  *
  * @author azul_
  */
-public class ActionObjectiveDAO implements IActionDAO{
+public class ActionObjectiveDAO implements IActionObjectiveDAO{
     private Connection connectionTransmission;
     Connection connect = null;
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_accion (titulo, descripcion, fkObjetivo, resultado) VALUES (?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_accion WHERE fkObjetivo = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_accion SET titulo = ?, descripcion = ? WHERE titulo = ? AND fkObjetivo = ?;";
-    private static final String SQL_DELETE = "DELETE FROM tbl_accion WHERE titulo = ? AND idAccion = ?;";
+    private static final String SQL_DELETE = "DELETE FROM tbl_accion WHERE idAccion = ?;";
     
     /**
      *
@@ -113,14 +113,13 @@ public class ActionObjectiveDAO implements IActionDAO{
     }
     
     @Override
-    public int delete(String title, int idAccion){
+    public int delete(int idAccion){
         connect = ConnectDB.getConexion();
         int rows = 0;
         if(connect != null){
             try{
                 preStatement = connect.prepareStatement(SQL_DELETE);
-                preStatement.setString(1, title);
-                preStatement.setInt(2, idAccion);
+                preStatement.setInt(1, idAccion);
                 rows = preStatement.executeUpdate();
             }
             catch (SQLException exception) {

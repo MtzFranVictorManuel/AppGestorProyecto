@@ -6,6 +6,7 @@ package sgpca.uv.mx.domain;
  */
 public class Objective {
     private static int idObjective;
+    private int idNoStaticObjective;
     private String title;
     private String strategy;
     private String result; 
@@ -44,6 +45,10 @@ public class Objective {
         return idObjective;
     }
 
+    public int getIdNoStaticObjective() {
+        return idNoStaticObjective;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -76,6 +81,10 @@ public class Objective {
         Objective.idObjective = idObjective;
     }
 
+    public void setIdNoStaticObjective(int idNoStaticObjective) {
+        this.idNoStaticObjective = idNoStaticObjective;
+    }
+    
     public void setTitle(String title) {
         this.title = title;
     }

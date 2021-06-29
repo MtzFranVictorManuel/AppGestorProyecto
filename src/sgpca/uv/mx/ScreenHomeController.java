@@ -38,39 +38,53 @@ public class ScreenHomeController implements Initializable {
     Members memberObject = new Members();  
     AcademicBody academicObject = new AcademicBody();
     Workplan workplanObject = new Workplan();
-    
+    AlertGuis alertGuis = new AlertGuis();
     
     @FXML
     private Label labelInstitucionalFaculty;
-    @FXML
-    private Label labelName;
-    @FXML
-    private Label labelPositionAcamedic;
     
     @FXML
-    private ComboBox<String> comboBox;
+    private Label labelName;
+    
+    @FXML
+    private Label labelPositionAcamedic;   
+    
+    @FXML
+    private ComboBox<String> comboBoxSelectWorkplanKey;
+    
     @FXML
     private TableColumn columnPendingObjective;
+    
     @FXML
     private TableColumn columnCompletedObjective;
+    
+    @FXML
+    private TableColumn columnIdPendingObjectives;
+    
+    @FXML
+    private TableColumn columnIdCompletedObjective;
+    
     @FXML
     private TableView<Objective> tableViewPending;
+    
     @FXML
     private TableView<Objective> tableViewCompleted;
+    
     @FXML
     private Button addBodyWorkplan;
+    
     @FXML
     private Button idLogout;
+    
     @FXML
     private Button manageBodyWorkplan;
     
-    
     private ObservableList<String> listWorkPlan;
-    
+   
     private ObservableList<Objective> objectiveState;
     
     private ObservableList<Objective> objectiveStateComplet;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {       
         listWorkPlan = FXCollections.observableArrayList();
@@ -78,10 +92,8 @@ public class ScreenHomeController implements Initializable {
         academicInfo.select(memberObject.getIdMember());
         labelInstitucionalFaculty.setText(academicObject.getInstitucionalFaculty());
         labelName.setText(memberObject.getName());
-        comboBox.getItems().addAll(workplanInfo.logWorkplanList(listWorkPlan));
+        comboBoxSelectWorkplanKey.getItems().addAll(workplanInfo.logWorkplanList(listWorkPlan));
     }    
-
-    
 
     @FXML
     private void callWorkPlan(ActionEvent event) {
@@ -115,15 +127,16 @@ public class ScreenHomeController implements Initializable {
     public void updateTable(){
         objectiveState = FXCollections.observableArrayList();
         objectiveStateComplet = FXCollections.observableArrayList();
-        this.columnPendingObjective.setCellValueFactory(new PropertyValueFactory("title"));
         tableViewCompleted.setItems(objectiveInfo.loadObjectiveComplet(objectiveStateComplet, "completado", setDateComboBox()));
         tableViewPending.setItems(objectiveInfo.loadObjectivePending(objectiveState, "pendiente", setDateComboBox()));
+        this.columnPendingObjective.setCellValueFactory(new PropertyValueFactory("title"));
+        this.columnIdPendingObjectives.setCellValueFactory(new PropertyValueFactory("idNoStaticObjective"));
         this.columnCompletedObjective.setCellValueFactory(new PropertyValueFactory("title"));
-        
+        this.columnIdCompletedObjective.setCellValueFactory(new PropertyValueFactory("idNoStaticObjective"));
     }
     
     public int setDateComboBox(){
-        String workplanID = comboBox.getValue();
+        String workplanID = comboBoxSelectWorkplanKey.getValue();
         int idWorkplan = workplanInfo.queryWorkplanID(workplanID);
         return idWorkplan;
     }
@@ -141,19 +154,31 @@ public class ScreenHomeController implements Initializable {
     }
 
     @FXML
-    private void displayInformation(MouseEvent event) {
-        Objective objectiveContainer = tableViewPending.getSelectionModel().getSelectedItem();
-        int id = Objective.getIdObjective();
-        String title= objectiveContainer.getTitle();
-        System.out.println(" " + id + title);
-        navigationScreen("gui/ScreenEditObjective.fxml");
-        
+    private void displayInformationPending(MouseEvent event) {
+        try{
+            Objective objectiveContainerPending = tableViewPending.getSelectionModel().getSelectedItem();
+            int idObjectivePending = objectiveContainerPending.getIdNoStaticObjective();
+            Objective.setIdObjective(idObjectivePending);
+            navigationScreen("gui/ScreenEditObjective.fxml");
+        } catch(RuntimeException exception){
+            alertGuis.alertError("Selection not confirmed ", "A work plan key is not selected or an objective has not been selected.", "");
+        }
     }
 
     @FXML
     private void generalCurriculum(ActionEvent event) {
         navigationScreen("gui/ScreenGeneralCurriculum.fxml");
-    }
+    }   
 
-    
+    @FXML
+    private void displayInformationCompleted(MouseEvent event) {
+        try{
+            Objective objectiveContainerCompleted = tableViewCompleted.getSelectionModel().getSelectedItem();
+            int idObjectiveCompleted = objectiveContainerCompleted.getIdNoStaticObjective();
+            Objective.setIdObjective(idObjectiveCompleted);
+            navigationScreen("gui/ScreenEditObjective.fxml");
+        } catch(RuntimeException exception){
+            alertGuis.alertError("Selection not confirmed ", "A work plan key is not selected or an objective has not been selected.", "");
+        }
+    }
 }

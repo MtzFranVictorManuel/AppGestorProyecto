@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" fx:id="anchorPanelObjective" prefHeight="857.0" prefWidth="853.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sgpca.uv.mx.ScreenAddObjectiveController">
+<AnchorPane id="AnchorPane" fx:id="anchorPanelObjective" prefHeight="857.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.uv.mx.ScreenAddObjectiveController">
    <children>
       <Label layoutX="37.0" layoutY="127.0" text="Objective title:  " />
       <Label layoutX="418.0" layoutY="127.0" text="Strategy:  " />
@@ -27,7 +26,7 @@
             <TextField fx:id="textFieldActionTitle" layoutX="118.0" layoutY="63.0" prefHeight="25.0" prefWidth="367.0" />
             <TextArea fx:id="textFieldActionDescription" layoutX="118.0" layoutY="110.0" prefHeight="64.0" prefWidth="609.0" />
             <TextField fx:id="textFieldActionResult" layoutX="118.0" layoutY="193.0" prefHeight="25.0" prefWidth="367.0" />
-            <TableView fx:id="tableViewAction" layoutX="54.0" layoutY="234.0" prefHeight="200.0" prefWidth="692.0">
+            <TableView fx:id="tableViewAction" layoutX="54.0" layoutY="234.0" onMouseClicked="#deleteActionSelect" prefHeight="200.0" prefWidth="692.0">
               <columns>
                 <TableColumn fx:id="tableColumnActionTitle" editable="false" prefWidth="175.0" sortType="DESCENDING" sortable="false" text="Action title" />
                 <TableColumn fx:id="tableColumnActionDescription" editable="false" prefWidth="305.0" sortType="DESCENDING" sortable="false" text="Description" />

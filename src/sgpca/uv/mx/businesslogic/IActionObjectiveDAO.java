@@ -11,7 +11,7 @@ import sgpca.uv.mx.domain.ActionObjective;
  *
  * @author azul_
  */
-public interface IActionDAO {
+public interface IActionObjectiveDAO {
     
     public int insert(ActionObjective action, int idObjective);
     
@@ -19,5 +19,5 @@ public interface IActionDAO {
     
     public int update(ActionObjective action, String titulo, int idObjective);
     
-    public int delete(String title, int idAccion);
+    public int delete(int idAccion);
 }
