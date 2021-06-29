@@ -119,7 +119,7 @@ public class ScreenHomeController implements Initializable {
     @FXML
     private void manageWorkplan(ActionEvent event) {
         if(setDateComboBox() != 0){
-            Workplan workid = new Workplan(setDateComboBox());
+            Workplan.setIdWorkplan(setDateComboBox());
             navigationScreen("gui/ScreenManageBodyWorkplan.fxml");         
         }
     }

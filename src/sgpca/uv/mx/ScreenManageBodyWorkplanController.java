@@ -172,10 +172,9 @@ public class ScreenManageBodyWorkplanController implements Initializable {
         
     public void showTableInformation(){
         observabelTable = FXCollections.observableArrayList();
+        tableViewObjective.setItems(objectiveInfo.selectTableView(observabelTable, Workplan.getIdWorkplan()));
         this.columnRegisteredObjective.setCellValueFactory(new PropertyValueFactory("title"));
         this.columnDescription.setCellValueFactory(new PropertyValueFactory("description"));
         this.columnStateObjective.setCellValueFactory(new PropertyValueFactory("targetState"));
-        tableViewObjective.setItems(objectiveInfo.selectTableView(observabelTable, Workplan.getIdWorkplan()));
-        
     }
 }

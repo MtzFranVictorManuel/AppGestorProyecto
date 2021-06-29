@@ -20,6 +20,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
     PreparedStatement preStatement = null;
     private static final String SQL_INSERT = "INSERT INTO tbl_objetivo (titulo, estrategia, resultado, meta, descripcion, estadoObjetivo, fkPlanTrabajo) VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_SELECT = "SELECT * FROM tbl_objetivo WHERE  idObjetivo = ?;";
+    private static final String SQL_SELECTOBJECTIVE = "SELECT * FROM tbl_objetivo WHERE fkPlanTrabajo = ?;";
     private static final String SQL_SELECTIDOBJETIVE = "SELECT idObjetivo FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
     private static final String SQL_UPDATE = "UPDATE tbl_objetivo SET titulo = ?, estrategia = ?, resultado = ?, meta = ?, descripcion = ? WHERE titulo = ? AND fkPlanTrabajo  = ?;";
     private static final String SQL_DELETE = "DELETE FROM tbl_objetivo WHERE titulo = ? AND fkPlanTrabajo = ?;";
@@ -255,7 +256,7 @@ public class ObjectiveDAO implements IObjectiveDAO{
         Objective objective = null;
         if(connect != null){
             try{
-                preStatement = connect.prepareStatement(SQL_SELECT);
+                preStatement = connect.prepareStatement(SQL_SELECTOBJECTIVE);
                 preStatement.setInt(1, idWorkplan);
                 ResultSet rSet = preStatement.executeQuery();
                 while(rSet.next()){
